@@ -4,7 +4,7 @@ const WhyUs = () => {
     return (
         <section className="bg-blue-50 relative py-20">
             <svg
-               className="absolute top-0"
+                className="absolute top-0"
                 id="wave"
                 style={{ transform: 'rotate(180deg)', transition: '0.3s' }}
                 viewBox="0 0 1440 180"
@@ -56,28 +56,45 @@ const WhyUs = () => {
                     </div>
                     <div className="flex px-20 gap-5 items-center">
                         <div className="w-1/2 py-6">
-                            <div className="">
-                                <img src={img} alt="why us img" className="w-full  object-cover h-96 rounded-lg" />
+                            <div className="m-10">
+                                <img
+                                    data-aos="fade-up"
+                                    data-aos-easing="ease-out-cubic"
+                                    data-aos-duration="1000"
+                                    data-aos-delay="500"
+                                    src={img} alt="why us img" className="w-full  object-cover h-96 rounded-lg" />
                             </div>
                         </div>
                         <div className="w-1/2 ">
-                            <div className="flex p-5 gap-3">
+                            <div className="flex p-5 gap-3" >
                                 <span className="h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">1</span>
-                                <div className="flex-1">
+                                <div className="flex-1"
+                                    data-aos="fade-left"
+                                    data-aos-easing="ease-out-cubic"
+                                    data-aos-duration="1000"
+                                    data-aos-delay="1000">
                                     <h4 className="font-semibold text-lg">Easy Start</h4>
                                     <p className="text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque iste quisquam sint rem nulla nostrum eum eligendi possimus. Maiores expedita neque recusandae .</p>
                                 </div>
                             </div>
                             <div className="flex p-5 gap-3">
                                 <span className="h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">2</span>
-                                <div className="flex-1">
+                                <div className="flex-1"
+                                    data-aos="fade-left"
+                                    data-aos-easing="ease-out-cubic"
+                                    data-aos-duration="1000"
+                                    data-aos-delay="1500">
                                     <h4 className="font-semibold text-lg">Free Opinion</h4>
                                     <p className="text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque iste quisquam sint rem nulla nostrum eum eligendi possimus. Maiores expedita neque recusandae .</p>
                                 </div>
                             </div>
                             <div className="flex p-5 gap-3">
                                 <span className="h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">3</span>
-                                <div className="flex-1">
+                                <div className="flex-1"
+                                    data-aos="fade-left"
+                                    data-aos-easing="ease-out-cubic"
+                                    data-aos-duration="1000"
+                                    data-aos-delay="2000">
                                     <h4 className="font-semibold text-lg">Get Results</h4>
                                     <p className="text-sm">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque iste quisquam sint rem nulla nostrum eum eligendi possimus. Maiores expedita neque recusandae .</p>
                                 </div>

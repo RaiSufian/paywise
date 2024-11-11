@@ -24,8 +24,18 @@ const Services = () => {
                     </div>
                     <div className='w-1/2 '>
                         <div className="m-10 relative   h-96">
-                            <img src={img1} alt="services img1 " className="object-cover h-60 w-96 rounded-3xl absolute  -left-4 rounded-tl-none" />
-                            <img src={img2} alt="services img1 " className="object-cover h-60 w-96 rounded-3xl absolute -right-4 bottom-0 rounded-br-none" />
+                            <img
+                                data-aos="fade-left"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="1000"
+                                data-aos-delay="500"
+                                src={img1} alt="services img1 " className="object-cover h-60 w-96 rounded-3xl absolute  -left-4 rounded-tl-none" />
+                            <img
+                                data-aos="fade-right"
+                                data-aos-easing="ease-out-cubic"
+                                data-aos-duration="1000"
+                                data-aos-delay="500"
+                                src={img2} alt="services img1 " className="object-cover h-60 w-96 rounded-3xl absolute -right-4 bottom-0 rounded-br-none" />
 
                         </div>
                     </div>

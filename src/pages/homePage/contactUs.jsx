@@ -45,7 +45,11 @@ const ContactUs = () => {
                     </div>
                     <div className="w-1/2">
                         <div className="flex justify-center">
-                            <div className="w-4/5 px-10 py-10 form_area rounded-3xl">
+                            <div className="w-4/5 px-10 py-10 form_area rounded-3xl" 
+                            data-aos="zoom-in-up"
+                            data-aos-easing="ease-out-cubic"
+                            data-aos-duration="1000"
+                            data-aos-delay="500">
                                 <form>
                                     <Box
                                         component="form"
@@ -74,13 +78,13 @@ const ContactUs = () => {
                                                 sx={textFeild}
 
                                             />
-                                            <TextField
+                                            {/* <TextField
                                                
                                                 label="Subject"
                                                 type="text"
                                                 sx={textFeild}
 
-                                            />
+                                            /> */}
                                             <TextField
                                                 id="outlined-multiline-static"
                                                 label="Your Message"
@@ -96,10 +100,11 @@ const ContactUs = () => {
                                                     width: "100%",
                                                     height: "50px",
                                                     fontSize: "18px",
-                                                    color: 'white', 
+                                                    color: '#41B9EE', 
                                                     margin: "8px",             
                                                     borderColor: 'white',     
-                                                    borderRadius: '20px',     
+                                                    borderRadius: '20px', 
+                                                    backgroundColor: 'white',    
                                                     '&:hover': {
                                                         backgroundColor: 'rgba(255, 255, 255, 0.1)',  // Slight white tint on hover
                                                         borderColor: 'white',        

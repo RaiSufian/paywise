@@ -17,7 +17,7 @@ const Hero = () => {
         const splide = new Splide('.splide', {
             type: 'loop',
             perPage: 1,
-            autoplay: false,
+            autoplay: true,
             interval: 8000,
             pauseOnHover: false,
             arrows: true,
@@ -56,7 +56,7 @@ const Hero = () => {
                                                      <AnimateUp />
                                                 </h2>
                                                 <div className="pt-8 flex gap-5">
-                                                    <div data-aos="fade-up">
+                                                    <div >
                                                         <Button variant="contained" sx={{
                                                             fontSize: '18px',
                                                             padding: '10px 28px 8px 28px',
