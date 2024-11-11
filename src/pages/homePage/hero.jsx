@@ -5,50 +5,36 @@ import img1 from '../../assets/slide1.jpg';
 import img2 from '../../assets/slide2.jpg';
 import img3 from '../../assets/slide3.jpg';
 import { Button } from '@mui/material';
+import AnimateBounce from '../../components/AnimateBounce';
+import AnimateUp from '../../components/animateUp';
+import AnimateRight from '../../components/animateRight';
+import AnimateDown from '../../components/animatedown';
 const Hero = () => {
+    const [activeSlide, setActiveSlide] = useState(0);
 
-    const [showButton, setShowButton] = useState(false);
 
     useEffect(() => {
-
         const splide = new Splide('.splide', {
             type: 'loop',
             perPage: 1,
-            autoplay: true,
+            autoplay: false,
             interval: 8000,
             pauseOnHover: false,
             arrows: true,
             pagination: false,
             keyboard: true,
         });
-
-        splide.on('active', (slide) => {
-            if (slide.index === 0) { // Replace '0' with the index of the slide with animated text if needed
-                const spans = document.querySelectorAll('#hero-text span');
-
-                setShowButton(false);
-
-                spans.forEach((span, index) => {
-                    span.style.animation = 'none';
-                    setTimeout(() => {
-                        span.style.animation = '';
-                        span.style.animationDelay = `${index * 0.1}s`;
-                    }, 10);
-                });
-
-                const textAnimationDuration = spans.length * 0.1 * 700;
-                setTimeout(() => setShowButton(true), textAnimationDuration);
-            }
-
+        splide.on('moved', (newIndex) => {
+            // Update active slide index when the slide changes
+            setActiveSlide(newIndex);
         });
-
         splide.mount();
-
         return () => {
             splide.destroy();
         };
 
     }, []);
+
 
     return (
 
@@ -59,68 +45,39 @@ const Hero = () => {
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
                                 <img src={img1} alt='slider image' />
-                                <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
-                                    <div className="px-5 container mx-auto  w-full h-screen flex items-center">
-                                        <div>
-                                            <h3 className=" tracking-wider swap-y underline uppercase font-sans text-xl font-bold">Paywise umbrella</h3>
-                                            <h2 className="uppercase text-7xl font-bold hero-text" id="hero-text">
-                                                <span>D</span>
-                                                <span>i</span>
-                                                <span>s</span>
-                                                <span>c</span>
-                                                <span>o</span>
-                                                <span>v</span>
-                                                <span>e</span>
-                                                <span>r</span>
-                                                <br />
-                                                <span>H</span>
-                                                <span>a</span>
-                                                <span>s</span>
-                                                <span>s</span>
-                                                <span>e</span>
-                                                <span>l</span>
-                                                <span>-</span>
-                                                <span>f</span>
-                                                <span>r</span>
-                                                <span>e</span>
-                                                <span>e</span>
-                                                <br />
-                                                <span>c</span>
-                                                <span>o</span>
-                                                <span>n</span>
-                                                <span>t</span>
-                                                <span>r</span>
-                                                <span>a</span>
-                                                <span>c</span>
-                                                <span>t</span>
-                                                <span>i</span>
-                                                <span>n</span>
-                                                <span>g</span>
+                                {activeSlide === 0 &&
+                                    <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
+                                        <div className="px-5 container mx-auto  w-full h-screen flex items-center">
+                                            <div>
+                                                <h3 className=" tracking-wider  uppercase font-sans text-xl font-bold">
+                                                    <AnimateBounce />
+                                                </h3>
+                                                <h2 className="uppercase text-7xl font-bold hero-text" id="hero-text">
+                                                     <AnimateUp />
+                                                </h2>
+                                                <div className="pt-8 flex gap-5">
+                                                    <div data-aos="fade-up">
+                                                        <Button variant="contained" sx={{
+                                                            fontSize: '18px',
+                                                            padding: '10px 28px 8px 28px',
+                                                            borderRadius: '50px'
+                                                        }} >About Paywise</Button>
+                                                    </div>
 
-                                            </h2>
-                                            <div className="pt-8 flex gap-5">
-                                                <div className={`slide-in-left ${showButton ? 'active' : ''}`}>
+                                                    <div >
 
-                                                    <Button variant="contained" sx={{
-                                                        fontSize: '18px',
-                                                        padding: '10px 28px 8px 28px',
-                                                        borderRadius: '50px'
-                                                    }} >About Paywise</Button>
-                                                </div>
-
-                                                <div className={`slide-in-left-delay slide-in-left ${showButton ? 'active' : ''}`}>
-
-                                                    <Button sx={{
-                                                        fontSize: '18px',
-                                                        padding: '10px 28px 8px 28px',
-                                                        borderRadius: '50px',
-                                                        backgroundColor: '#fff'
-                                                    }} >Contact Us</Button>
+                                                        <Button sx={{
+                                                            fontSize: '18px',
+                                                            padding: '10px 28px 8px 28px',
+                                                            borderRadius: '50px',
+                                                            backgroundColor: '#fff'
+                                                        }} >Contact Us</Button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </li>
@@ -130,20 +87,24 @@ const Hero = () => {
                                 <img src={img2} alt='slider image' />
                                 <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                     <div className="px-5 container mx-auto  w-full h-screen flex items-center">
-                                        <div className="text-center w-full">
-                                            <h2 className="uppercase text-6xl font-bold">Working for yourself just <br /> got easier</h2>
-                                            <div className="pt-8">
-                                                <Button variant="contained"
-                                                    sx={{
-                                                        fontSize: '18px',
-                                                        padding: '10px 28px 8px 28px',
-                                                        borderRadius: '50px',
-                                                        fontWeight: '600',
-                                                        verticalAlign: 'center',
-                                                    }}
-                                                >Sign Up</Button>
+                                        {activeSlide === 1 &&
+                                            <div className="text-center w-full">
+                                                <h2 className="uppercase text-6xl font-bold">
+                                                    <AnimateRight />
+                                                </h2>
+                                                <div className="pt-8">
+                                                    <Button variant="contained"
+                                                        sx={{
+                                                            fontSize: '18px',
+                                                            padding: '10px 28px 8px 28px',
+                                                            borderRadius: '50px',
+                                                            fontWeight: '600',
+                                                            verticalAlign: 'center',
+                                                        }}
+                                                    >Sign Up</Button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -153,25 +114,27 @@ const Hero = () => {
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
                                 <img src={img3} alt='slider image' />
-                                <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
-                                    <div className="px-5 container mx-auto  w-full h-screen flex items-center">
-                                        <div className="text-center w-full">
-                                            <h2 className="tracking-wider swap-y underline uppercase font-sans text-xl font-bold">pay wise umbrella</h2>
-                                            <h1 className="uppercase text-6xl font-bold py-5">Simplify your contracting life</h1>
-                                            <div className="pt-8">
-                                                <Button variant="contained"
-                                                    sx={{
-                                                        fontSize: '18px',
-                                                        padding: '10px 28px 8px 28px',
-                                                        borderRadius: '50px',
-                                                        fontWeight: '600',
-                                                        verticalAlign: 'center',
-                                                    }}
-                                                >Over Services</Button>
+                                {activeSlide === 2 &&
+                                    <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
+                                        <div className="px-5 container mx-auto  w-full h-screen flex items-center">
+                                            <div className="text-center w-full">
+                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
+                                                <h1 className="uppercase text-6xl font-bold py-5">  <AnimateDown /></h1>
+                                                <div className="pt-8">
+                                                    <Button variant="contained"
+                                                        sx={{
+                                                            fontSize: '18px',
+                                                            padding: '10px 28px 8px 28px',
+                                                            borderRadius: '50px',
+                                                            fontWeight: '600',
+                                                            verticalAlign: 'center',
+                                                        }}
+                                                    >Over Services</Button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                     </li>

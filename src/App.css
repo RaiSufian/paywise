@@ -1,0 +1,27 @@
+/* slider css */
+/* Slider.css */
+
+.slider-container {
+    overflow: hidden;
+    width: 600px;   /* Set width of the slider */
+    margin: auto;
+  }
+  
+  .slider {
+    display: flex;
+  }
+  
+  .slide {
+    min-width: 100%;  /* Ensure each slide takes full width */
+    pointer-events: none; /* Prevents child elements from interrupting the drag */
+  }
+  
+  .slide img {
+    width: 100%;
+    height: auto;
+  }
+  
+.btn_grad{
+   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.4);
+    background:  linear-gradient(338deg, #FF29A8 2.79%, #AD47DD 27.07%, #3237E2 63.78%, #00B5FF 102.02%), #17246D !important
+}

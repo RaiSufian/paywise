@@ -5,18 +5,22 @@ import WelcomeNote from "./welcomeNote";
 import WhatWeDo from "./whatWeDo";
 import Services from "./services";
 import WhyUs from "./whyUs";
-const Home = () =>{
+import ContactUs from "./contactUs";
+import Footer from "../../components/footer";
+
+const Home = () => {
     return (
 
         <>
-        <Topbar/>
-        <Header/>
-        < Hero />
-        <WelcomeNote/>
-        <WhatWeDo/>
-        <Services/>
-        <WhyUs/>
-       
+            <Topbar />
+            <Header />
+            < Hero />
+            <WelcomeNote />
+            <WhatWeDo />
+            <Services />
+            <WhyUs />
+            <ContactUs />
+            <Footer/>
         </>
     )
 }

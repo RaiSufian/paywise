@@ -11,7 +11,7 @@ const WelcomeNote = () => {
                             <span className='absolute w-full h-full border-4 border-blue-500 -top-6 -left-6  -z-10'></span>
                         </div>
                     </div>
-                    <div className="w-6/12 ">
+                    <div className="w-6/12 welcomebg">
                         <div className="m-20">
 
                             <h3 className="text-blue-600 flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">

@@ -34,7 +34,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div>
-                    <button className="border-blue-500 bg-blue-500 text-white font-semibold py-2 px-4 rounded transition duration-300 ease-in-out hover:bg-white hover:text-blue-500 border hover:scale-105">
+                    <button className="text-white rounded-full py-3 px-10 btn_grad">
                         Sign Up
                     </button>
                 </div>
