@@ -5,7 +5,7 @@ import img1 from '../../assets/slide1.jpg';
 import img2 from '../../assets/slide2.jpg';
 import img3 from '../../assets/slide3.jpg';
 import { Button } from '@mui/material';
-import AnimateBounce from '../../components/AnimateBounce';
+import AnimateBounce from "../../components/animateBounce";
 import AnimateUp from '../../components/animateUp';
 import AnimateRight from '../../components/animateRight';
 import AnimateDown from '../../components/animatedown';
