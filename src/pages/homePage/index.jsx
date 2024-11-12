@@ -11,17 +11,17 @@ import Footer from "../../components/footer";
 const Home = () => {
     return (
 
-        <>
+        <div className="relative ">
             <Topbar />
-            <Header />
-            < Hero />
+             <Header />
+           < Hero />
             <WelcomeNote />
             <WhatWeDo />
             <Services />
             <WhyUs />
             <ContactUs />
             <Footer/>
-        </>
+        </div>
     )
 }
 export default Home;

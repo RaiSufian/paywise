@@ -47,30 +47,50 @@ const Hero = () => {
                                 <img src={img1} alt='slider image' />
                                 {activeSlide === 0 &&
                                     <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
-                                        <div className="px-5 container mx-auto  w-full h-screen flex items-center">
+                                        <div className="pl-10  w-full h-full lg:h-screen flex items-center">
                                             <div>
-                                                <h3 className=" tracking-wider  uppercase font-sans text-xl font-bold">
+                                                <h3 className=" tracking-wider  uppercase font-sans text-sm md:text-xl font-bold">
                                                     <AnimateBounce />
                                                 </h3>
-                                                <h2 className="uppercase text-7xl font-bold hero-text" id="hero-text">
-                                                     <AnimateUp />
+                                                <h2 className="leading-none lg:leading-normaluppercase text-xl md:text-5xl lg:text-7xl font-bold hero-text" id="hero-text">
+                                                    <AnimateUp />
                                                 </h2>
-                                                <div className="pt-8 flex gap-5">
+                                                <div className="pt-3 md:pt-4 lg:pt-8 flex gap-5">
                                                     <div >
                                                         <Button variant="contained" sx={{
-                                                            fontSize: '18px',
-                                                            padding: '10px 28px 8px 28px',
-                                                            borderRadius: '50px'
+                                                            fontSize: {
+                                                                xs: '12px',
+                                                                md: '18px',
+                                                            },
+                                                            padding: {
+                                                                xs: '8px 22px 6px 22px',
+                                                                md: '10px 28px 8px 28px'
+                                                            },
+                                                            borderRadius: '50px',
+                                                            '@media (max-width:330px)': {
+                                                                fontSize: '10px',
+                                                                padding: '6px 18px 4px 18px',
+                                                            }
                                                         }} >About Paywise</Button>
                                                     </div>
 
                                                     <div >
 
                                                         <Button sx={{
-                                                            fontSize: '18px',
-                                                            padding: '10px 28px 8px 28px',
+                                                            fontSize: {
+                                                                xs: '12px',
+                                                                md: '18px',
+                                                            },
+                                                            padding: {
+                                                                xs: '8px 22px 6px 22px',
+                                                                md: '10px 28px 8px 28px'
+                                                            },
                                                             borderRadius: '50px',
-                                                            backgroundColor: '#fff'
+                                                            backgroundColor: '#fff',
+                                                            '@media (max-width:330px)': {
+                                                                fontSize: '10px',
+                                                                padding: '6px 18px 4px 18px',
+                                                            }
                                                         }} >Contact Us</Button>
                                                     </div>
                                                 </div>
@@ -86,20 +106,28 @@ const Hero = () => {
                             <div className="image-wrapper relative">
                                 <img src={img2} alt='slider image' />
                                 <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
-                                    <div className="px-5 container mx-auto  w-full h-screen flex items-center">
+                                    <div className="pl-3 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                         {activeSlide === 1 &&
                                             <div className="text-center w-full">
-                                                <h2 className="uppercase text-6xl font-bold">
+                                                <h2 className="uppercase text-xl md:text-4xl lg:text-6xl font-bold">
                                                     <AnimateRight />
                                                 </h2>
-                                                <div className="pt-8">
+                                                <div className="pt-3 md:pt-5 lg:pt-8">
                                                     <Button variant="contained"
                                                         sx={{
-                                                            fontSize: '18px',
-                                                            padding: '10px 28px 8px 28px',
+                                                            fontSize: {
+                                                                xs: '12px',
+                                                                md: '18px',
+                                                            },
+                                                            padding: {
+                                                                xs: '8px 22px 6px 22px',
+                                                                md: '10px 28px 8px 28px'
+                                                            },
                                                             borderRadius: '50px',
-                                                            fontWeight: '600',
-                                                            verticalAlign: 'center',
+                                                            '@media (max-width:330px)': {
+                                                                fontSize: '10px',
+                                                                padding: '6px 18px 4px 18px',
+                                                            }
                                                         }}
                                                     >Sign Up</Button>
                                                 </div>
@@ -116,18 +144,26 @@ const Hero = () => {
                                 <img src={img3} alt='slider image' />
                                 {activeSlide === 2 &&
                                     <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
-                                        <div className="px-5 container mx-auto  w-full h-screen flex items-center">
+                                        <div className="px-2 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                             <div className="text-center w-full">
-                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
-                                                <h1 className="uppercase text-6xl font-bold py-5">  <AnimateDown /></h1>
-                                                <div className="pt-8">
+                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
+                                                <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  <AnimateDown /></h1>
+                                                <div className="pt-4 md:pt-4 lg:pt-8">
                                                     <Button variant="contained"
                                                         sx={{
-                                                            fontSize: '18px',
-                                                            padding: '10px 28px 8px 28px',
+                                                            fontSize: {
+                                                                xs: '12px',
+                                                                md: '18px',
+                                                            },
+                                                            padding: {
+                                                                xs: '8px 22px 6px 22px',
+                                                                md: '10px 28px 8px 28px'
+                                                            },
                                                             borderRadius: '50px',
-                                                            fontWeight: '600',
-                                                            verticalAlign: 'center',
+                                                            '@media (max-width:330px)': {
+                                                                fontSize: '10px',
+                                                                padding: '6px 18px 4px 18px',
+                                                            }
                                                         }}
                                                     >Over Services</Button>
                                                 </div>
@@ -144,7 +180,7 @@ const Hero = () => {
             </div>
 
             <svg
-                className="absolute bottom-0 left-0 right-0"
+                className="absolute -bottom-1 lg:bottom-0 left-0 right-0"
                 id="wave"
                 style={{ transform: "rotate(0deg)", transition: "0.3s" }}
                 viewBox="0 0 1440 150"

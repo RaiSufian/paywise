@@ -22,6 +22,22 @@
   }
   
 .btn_grad{
-   box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.4);
+   box-shadow: -5px 3px 8px rgba(0, 0, 0, 0.2);
     background:  linear-gradient(338deg, #FF29A8 2.79%, #AD47DD 27.07%, #3237E2 63.78%, #00B5FF 102.02%), #17246D !important
+}
+.svg_size{
+  width: 125px;
+  height: 125px;
+}
+.css-e70qmq .MuiTextField-root{
+  margin: 8px 0px;
+}
+@media screen and (max-width: 768px) {
+  .splide__arrows.splide__arrows--ltr {
+    display: none;
+  }
+  .svg_size{
+    width: 100px;
+    height: 100px;
+  }
 }
