@@ -1,13 +1,29 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isSticky, setIsSticky] = useState(false);
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 0) {
+                setIsSticky(true);
+            } else {
+                setIsSticky(false);
+            }
+        };
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
 
 
     return (
-        <div className="bg-white">
-            <div className="lg:container  flex mx-auto py-3 justify-between items-center px-3 md:px-2 lg:px-6">
+        <div className={`bg-white sticky top-0 z-50 transition-all duration-200 ${isSticky ? 'bg-opacity-60 rounded-b-3xl scale-90' : ''}`}>
+            <div className={`lg:container  flex mx-auto py-3 justify-between items-center px-3 md:px-2 lg:px-6 ${isSticky ? '' : ''}`}>
                 <Link to="/" className="lg:mr-4">
                     <img src='/logo.png' alt="logo" className="w-24 lg:w-36" />
                 </Link>
@@ -51,7 +67,7 @@ const Header = () => {
                 </div>
             </div>
             <div
-              className={`md:hidden absolute z-50 bg-white p-10 transition-all duration-300 top-0 bottom-0 ${isOpen ? 'translate-x-0 opacity-100 w-full left-0' : 'translate-x-full opacity-0 w-0'
+                className={`md:hidden absolute z-50 bg-white p-10 transition-all duration-300 top-0 bottom-0 ${isOpen ? 'translate-x-0 opacity-100 w-full left-0' : 'translate-x-full opacity-0 w-0'
                     }`}>
                 <div >
                     <svg onClick={() => setIsOpen(false)} className="ml-auto" xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 48 48"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m8 8l32 32M8 40L40 8" /></svg>
