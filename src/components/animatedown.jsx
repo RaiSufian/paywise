@@ -5,7 +5,7 @@ const AnimateDown = () => {
     const [splitText, setSplitText] = useState("");
     let animatedown = useRef();
     useLayoutEffect(() => {
-        const text = "Simplify your contracting life";
+        const text = "Streamline your contracting / journey";
 
         const chars = text.split('');
 

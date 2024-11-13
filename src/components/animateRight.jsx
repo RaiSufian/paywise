@@ -4,7 +4,7 @@ const AnimateRight = () =>  {
     const [splitText, setSplitText] = useState("");
     let animateup = useRef();
     useLayoutEffect(() => {
-        const text = "Working for yourself just / got easier";
+        const text = "Running your own business / just became easier";
         
         const chars = text.split('');
 

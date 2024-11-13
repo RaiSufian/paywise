@@ -7,7 +7,7 @@ const Footer = () => {
                     <div className="lg:w-1/2 pb-5">
                         <div className="">
                             <img src="/logo 2.jpg" alt="footer_logo" className="w-40" />
-                            <p className="text-white py-5">At PayWise Umbrella, we understand that managing invoicing, payroll, administration, and tax payments can be a daunting task for contractors. That's why we have developed the most comprehensive umbrella service in the industry, with the help of our team of specialists, to make your life easier and stress-free.</p>
+                            <p className="text-white py-5">At Paywise Umbrella, we recognize that managing invoicing, payroll, administration, and tax payments can be overwhelming for contractors. That’s why we’ve created the most comprehensive umbrella service in the industry, backed by a team of experts dedicated to simplifying these processes. Our goal is to remove the stress from your contracting experience, offering a seamless and hassle-free solution so you can focus on what matters most—your work. With our support, you can rest assured knowing that every aspect of your contract is handled with care and efficiency.</p>
                             <Button variant="contained" sx={{
                                 fontSize: '18px',
                                 padding: '10px 24px 8px 24px',

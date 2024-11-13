@@ -11,8 +11,6 @@ import AnimateRight from '../../components/animateRight';
 import AnimateDown from '../../components/animatedown';
 const Hero = () => {
     const [activeSlide, setActiveSlide] = useState(0);
-
-
     useEffect(() => {
         const splide = new Splide('.splide', {
             type: 'loop',
@@ -25,7 +23,6 @@ const Hero = () => {
             keyboard: true,
         });
         splide.on('moved', (newIndex) => {
-            // Update active slide index when the slide changes
             setActiveSlide(newIndex);
         });
         splide.mount();
@@ -56,25 +53,34 @@ const Hero = () => {
                                                     <AnimateUp />
                                                 </h2>
                                                 <div className="pt-3 md:pt-4 lg:pt-8 flex gap-5">
-                                                    <div >
-                                                        <Button variant="contained" sx={{
-                                                            fontSize: {
-                                                                xs: '12px',
-                                                                md: '18px',
-                                                            },
-                                                            padding: {
-                                                                xs: '8px 22px 6px 22px',
-                                                                md: '10px 28px 8px 28px'
-                                                            },
-                                                            borderRadius: '50px',
-                                                            '@media (max-width:330px)': {
-                                                                fontSize: '10px',
-                                                                padding: '6px 18px 4px 18px',
-                                                            }
-                                                        }} >About Paywise</Button>
+                                                    <div data-aos="fade-right"
+                                                        data-aos-easing="ease-in-back"
+                                                        data-aos-delay="2000"
+                                                        data-aos-duration="1000">
+                                                        <Button
+
+                                                            variant="contained" sx={{
+                                                                fontSize: {
+                                                                    xs: '12px',
+                                                                    md: '18px',
+                                                                },
+                                                                padding: {
+                                                                    xs: '8px 22px 6px 22px',
+                                                                    md: '10px 28px 8px 28px'
+                                                                },
+                                                                borderRadius: '50px',
+                                                                '@media (max-width:330px)': {
+                                                                    fontSize: '10px',
+                                                                    padding: '6px 18px 4px 18px',
+                                                                }
+                                                            }} >About Paywise</Button>
                                                     </div>
 
-                                                    <div >
+                                                    <div
+                                                        data-aos="fade-left"
+                                                        data-aos-easing="ease-in-back"
+                                                        data-aos-delay="3000"
+                                                        data-aos-duration="1000">
 
                                                         <Button sx={{
                                                             fontSize: {
@@ -112,7 +118,11 @@ const Hero = () => {
                                                 <h2 className="uppercase text-xl md:text-4xl lg:text-6xl font-bold">
                                                     <AnimateRight />
                                                 </h2>
-                                                <div className="pt-3 md:pt-5 lg:pt-8">
+                                                <div className="pt-3 md:pt-5 lg:pt-8"
+                                                    data-aos="fade-bottom"
+                                                    data-aos-easing="ease-in-back"
+                                                    data-aos-delay="2000"
+                                                    data-aos-duration="1000">
                                                     <Button variant="contained"
                                                         sx={{
                                                             fontSize: {
@@ -148,7 +158,11 @@ const Hero = () => {
                                             <div className="text-center w-full">
                                                 <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
                                                 <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  <AnimateDown /></h1>
-                                                <div className="pt-4 md:pt-4 lg:pt-8">
+                                                <div className="pt-4 md:pt-4 lg:pt-8"
+                                                    data-aos="fade-right"
+                                                    data-aos-easing="ease-in-back"
+                                                    data-aos-delay="2000"
+                                                    data-aos-duration="500">
                                                     <Button variant="contained"
                                                         sx={{
                                                             fontSize: {
@@ -175,7 +189,7 @@ const Hero = () => {
                         </div>
                     </li>
 
-                    {/* Add more slides as needed */}
+
                 </ul>
             </div>
 

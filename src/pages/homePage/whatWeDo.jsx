@@ -1,6 +1,6 @@
 const WhatWeDo = () => {
     return (
-        <section className="whatDo py-10 lg:py-20">
+        <section className="whatDo py-10 ">
             <div className="container mx-auto md:px-5">
                 <div className="md:w-3/5 mx-auto">
                     <h3 className="text-blue-600 justify-center flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">

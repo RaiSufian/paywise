@@ -5,7 +5,7 @@ const AnimateUp = () => {
     const [splitText, setSplitText] = useState("");
     let animateup = useRef();
     useLayoutEffect(() => {
-        const text = "Discover Hassel-free contracting";
+        const text = "Experience Effortless Contracting";
         
         const chars = text.split('');
 
