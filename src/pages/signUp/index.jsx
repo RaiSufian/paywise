@@ -5,7 +5,17 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import BreadCrumb from "../../components/breadcrumb";
-import { DateField } from '@mui/x-date-pickers/DateField';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+
+
+
 
 const SignUp = () => {
     const textField = {
@@ -123,10 +133,7 @@ const SignUp = () => {
                         <div className="lg:w-1/2 mt-6 md:mt-20 lg:mt-0">
                             <div className="flex justify-center">
                                 <div className="w-full px-5 md:px-10 py-5  md:py-10 bg-blue-100 contact_from rounded-3xl"
-                                    data-aos="zoom-in-up"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="1000"
-                                    data-aos-delay="500">
+                                >
                                     <h2 className="font-bold text-2xl my-2">Required Payroll Information </h2>
                                     <Box
                                         component="form"
@@ -141,8 +148,8 @@ const SignUp = () => {
                                                 type="text"
                                                 sx={textField}
                                             />
-                                            <div className="flex gap-3">
-                                                <div className="w-1/2">
+                                            <div className="md:flex gap-3">
+                                                <div className="md:w-1/2">
                                                     <TextField
 
                                                         label="First Name *"
@@ -151,7 +158,7 @@ const SignUp = () => {
 
                                                     />
                                                 </div>
-                                                <div className="w-1/2">
+                                                <div className="md:w-1/2">
                                                     <TextField
 
                                                         label="Middle Name"
@@ -166,35 +173,173 @@ const SignUp = () => {
                                                 type="text"
                                                 sx={textField}
                                             />
-                                            <DateField
-                                                label="Date of Birth *"
-                                                type="date"
-                                                sx={textField}
-                                            
-                                            />
+                                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                                <DatePicker
+                                                    label="Date of Birth *"
+                                                    sx={textField}
+                                                // value={selectedDate}
+                                                // onChange={(newDate) => setSelectedDate(newDate)}
+                                                // renderInput={(params) => <TextField {...params} />}
+                                                />
+                                            </LocalizationProvider>
                                             <TextField
 
-                                                label="Your E-mail"
-                                                type="email"
-                                                sx={textField}
-
-                                            />
-                                            <TextField
-
-                                                label="Subject"
+                                                label="Marital status *"
                                                 type="text"
                                                 sx={textField}
 
                                             />
                                             <TextField
+
+                                                label="E-mail"
+                                                type="email"
+                                                sx={textField}
+
+                                            />
+                                            <TextField
+                                                label="Home Address"
+                                                type="text"
+                                                sx={textField}
+                                            />
+                                            <div className="md:flex gap-3">
+                                                <div className="md:w-1/2">
+                                                    <TextField
+                                                        label="Post Code *"
+                                                        type="text"
+                                                        sx={textField}
+                                                    />
+                                                </div>
+                                                <div className="md:w-1/2">
+                                                    <TextField
+                                                        label="Mobile Number"
+                                                        type="Number"
+                                                        sx={textField}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <div className="md:flex gap-3">
+                                                <div className="md:w-1/2">
+                                                    <TextField
+                                                        label="Nationality *"
+                                                        type="text"
+                                                        sx={textField}
+                                                    />
+                                                </div>
+                                                <div className="md:w-1/2">
+                                                    <TextField
+                                                        label="Share Code"
+                                                        type="text"
+                                                        sx={textField}
+                                                    />
+                                                </div>
+                                            </div>
+                                            <TextField
+                                                label="NI Number*"
+                                                type="text"
+                                                sx={textField}
+                                            />
+                                            <TextField
+                                                label="Bank Number*"
+                                                type="text"
+                                                sx={textField}
+                                            />
+                                            <TextField
+                                                label="Account Number*"
+                                                type="number"
+                                                sx={textField}
+                                            />
+                                            <h4 className="mx-2 font-bold text-blue-500">Job Title *</h4>
+                                            <div className="ml-3">
+                                                <FormGroup>
+                                                    <FormControlLabel required control={<Checkbox />} label="RGN" />
+                                                    <FormControlLabel required control={<Checkbox />} label="RMN" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="BAND 6" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="HCA" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="ITU" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="ODP" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="RNLD" />
+
+                                                    <FormControlLabel required control={<Checkbox />} label="Others" />
+
+
+                                                </FormGroup>
+                                            </div>
+                                            <p className="text-neutral-700 py-5">
+                                                Please select as needed or write in the comments if your speciality is not mentioned
+                                            </p>
+                                            <TextField
+                                                label="Agency Name*"
+                                                type="text"
+                                                sx={textField}
+                                            />
+                                            <TextField
                                                 id="outlined-multiline-static"
-                                                label="Your Message"
+                                                label="Comment"
                                                 multiline
                                                 rows={4} t
                                                 fullWidth
                                                 variant="outlined"
-                                                sx={textField} 
+                                                sx={textField}
                                             />
+                                            <div className="mt-4">
+                                                <h5 className="font-bold">Please Attach the documents</h5>
+                                                <ol className="list-decimal">
+                                                    <li className="pt-3 ml-4">
+                                                        Write to work - Passport and Visa
+                                                    </li>
+                                                    <li className="pt-3 ml-4">
+                                                        Proof of address - Utility Bill, Council tax, Driving Licence
+                                                    </li>
+                                                    <li className="pt-3 ml-4">
+                                                        Proof of Bank Details - Bank Statement, Bank Letter, Bank Card
+                                                    </li>
+                                                    <li className="pt-3 ml-4">
+                                                        Proof of NI - P60, P45, NI Card or Text Letter
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                            <div>
+                                                <div className="mt-5">
+                                                    <label>RIGHT TO WORK - PASSPORT AND VISA AS REQUIRED</label>
+                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                </div>
+                                                <div className="mt-5">
+                                                    <label>PROOF OF ADDRESS - UTILITY BILL, COUNCIL TAX, DRIVING LICENCE</label>
+                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                </div>
+                                                <div className="mt-5">
+                                                    <label>PROOF OF BANK DETAILS - BANK STATEMENT</label>
+                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                </div>
+                                                <div className="mt-5">
+                                                    <label>PROOF OF NI - P60, P45, NI CARD OR TAX LETTER</label>
+                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                </div>
+                                            </div>
+                                            <p className="text-neutral-700 mt-5 pl-2">
+                                                By law you will be automatically enrolled in a pension scheme.
+                                                Please discuss this with our consultants for more information.
+                                            </p>
+                                            <p className="text-neutral-700 mt-5 pl-2">
+                                                I authorize Smart Cash Umbrella to process my payroll and pay any
+                                                money due to me into the above bank/building society account.
+                                            </p>
+                                            <div className="mt-5 mb-5 px-4 py-2 bg-white  md:w-1/2 rounded-2xl ">
+                                                <RadioGroup
+                                                    row
+                                                    aria-labelledby="demo-row-radio-buttons-group-label"
+                                                    name="row-radio-buttons-group"
+                                                >
+                                                    <FormControlLabel value="female" control={<Radio />} label="Female" />
+                                                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+
+                                                </RadioGroup>
+                                            </div>
                                             <Button
                                                 variant="outlined"
                                                 sx={{
@@ -210,7 +355,7 @@ const SignUp = () => {
                                                         backgroundColor: '#068AD3',
                                                     },
                                                 }}
-                                            >Submit</Button>
+                                            >Sign Up</Button>
                                         </div>
 
                                     </Box>

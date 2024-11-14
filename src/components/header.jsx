@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
+
+    const location = useLocation();
+    console.log("this is the location", location.pathname);
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
@@ -30,12 +34,12 @@ const Header = () => {
                     </Link>
                     <div className="main_menu md:block hidden">
                         <ul className="flex items-center gap-5 lg:gap-12 font-semibold font-sans">
-                            <li className="text-blue-700 relative group py-2">
+                            <li className={` relative group py-2 ${location.pathname == "/" ? "text-blue-700" : ""}`}>
                                 <Link to="/">HOME</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
 
                             </li>
-                            <li className="hover:text-blue-500 relative group py-2">
+                            <li className={` relative group py-2 ${location.pathname == "/aboutus" ? "text-blue-700" : ""}`}>
                                 <Link to="/">ABOUT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
@@ -52,7 +56,7 @@ const Header = () => {
 
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
-                            <li className="hover:text-blue-500 relative group py-2">
+                            <li className={` relative group py-2 ${location.pathname == "/contactus" ? "text-blue-700" : ""}`}>
                                 <Link to="/contactus">CONTACT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
@@ -96,7 +100,7 @@ const Header = () => {
                         </span>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link>
+                        <Link to="/">
                             About Us
                         </Link>
                     </li>
@@ -106,13 +110,13 @@ const Header = () => {
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link>
+                        <Link to="/contactus">
                             Contact Us
                         </Link>
                     </li>
 
                     <li className="py-3">
-                        <Link className="bg-blue-500 rounded-3xl text-center w-full h-10 font-medium text-white pt-2 pb-3 block">
+                        <Link to="/signup" className="bg-blue-500 rounded-3xl text-center w-full h-10 font-medium text-white pt-2 pb-3 block">
                             Sign Up
                         </Link>
                     </li>
