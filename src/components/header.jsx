@@ -23,7 +23,7 @@ const Header = () => {
 
     return (
         <>
-            <div className={`bg-white sticky top-0 z-50 transition-all duration-200 ${isSticky ? 'bg-opacity-60 rounded-b-3xl scale-90' : ''}`}>
+            <div className={`bg-white sticky top-0 z-50 transition-all duration-200 ${isSticky ? 'bg-opacity-90 rounded-full scale-90' : ''}`}>
                 <div className={`lg:container  flex mx-auto py-3 justify-between items-center px-3 md:px-2 lg:px-6 ${isSticky ? '' : ''}`}>
                     <Link to="/" className="lg:mr-4">
                         <img src='/logo.png' alt="logo" className="w-24 lg:w-36" />
@@ -53,15 +53,16 @@ const Header = () => {
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
                             <li className="hover:text-blue-500 relative group py-2">
-                                <Link to="/">CONTACT US</Link>
+                                <Link to="/contactus">CONTACT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
                         </ul>
                     </div>
                     <div>
-                        <button className="text-white md:block hidden rounded-full py-2 lg:py-3 px-6 lg:px-10 btn_grad">
+                        <Link to="/signup" className="text-white md:block hidden rounded-full py-2 lg:py-3 px-6 lg:px-10 btn_grad">
                             Sign Up
-                        </button>
+                        </Link>
+
                     </div>
                     <div className="md:hidden">
                         <svg onClick={() => setIsOpen(true)} xmlns="http://www.w3.org/2000/svg" width="2.25em" height="2.25em" viewBox="0 0 24 24"><path fill="currentColor" d="M4 18h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1m0-5h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1s.45 1 1 1M3 7c0 .55.45 1 1 1h16c.55 0 1-.45 1-1s-.45-1-1-1H4c-.55 0-1 .45-1 1" /></svg>
@@ -77,12 +78,12 @@ const Header = () => {
                 </div>
                 <ul className="mt-2 p-5">
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link>
+                        <Link to="/">
                             Home
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link>
+                        <Link >
                             FAQs
                         </Link>
                     </li>

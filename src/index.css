@@ -51,3 +51,16 @@ body {
   background: rgb(65,185,238);
 background: linear-gradient(201deg, rgba(65,185,238,1) 30%, rgba(0,102,161,1) 100%);
 }
+.bread_crumb{
+  background-image:linear-gradient(201deg, rgba(65,185,238,0.5) 30%, rgba(0,102,161,0.5) 100%), url("./assets/slide3.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.contact_item{
+  box-shadow: 7px 5px 30px 0px rgba(71.99999999999999, 72.99999999999999, 120.99999999999999, 0.15);
+}
+.contact_from {
+  box-shadow: 5px 7px 30px 0px rgba(71.99999999999999, 72.99999999999999, 120.99999999999999, 0.15);
+
+}
