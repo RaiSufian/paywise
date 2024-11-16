@@ -50,7 +50,7 @@ const Header = () => {
                             <li className="hover:text-blue-500 relative group py-2">
                                 <div className="flex gap-1 items-center">
 
-                                    <Link to="/">OUR SERVICES</Link>
+                                    <Link to="/our-services">OUR SERVICES</Link>
                                     <svg className="text-gray-400" xmlns="http://www.w3.org/2000/svg" width="1.25em" height="0.75em" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71s.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0s.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z" /></svg>
                                 </div>
 
@@ -97,7 +97,7 @@ const Header = () => {
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b flex justify-between items-center">
-                        <Link onClick={() => setIsOpen(false)}>
+                        <Link to="/our-services" onClick={() => setIsOpen(false)}>
                             OUR SERVICES
                         </Link>
                         <span>

@@ -31,7 +31,7 @@ const AboutUs = () => {
             <Topbar />
             <Header />
             <BreadCrumb name="About Us" link="about-us" />
-            <div className="container mx-auto md:pt-6 px-2 md:px-6">
+            <div className="container mx-auto  px-2 md:px-6">
                 <div className="lg:flex pt-10 md:pt-20 items-center">
                     <div className="lg:w-1/2 md:pr-12">
                         <h1 className="text-blue-600 flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">
@@ -39,7 +39,7 @@ const AboutUs = () => {
                             About Us
                         </h1>
 
-                        <h1 className="py-2 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">Paywise Umbrella</h1>
+                        <h2 className="py-2 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">Paywise Umbrella</h2>
                         <p className="text-xl leading-loose md:pt-2">
                             At Smart Cash Umbrella, we understand that managing invoicing, payroll, administration, and tax payments can be a daunting task for contractors. That's why we have developed the most comprehensive umbrella service in the industry, with the help of our team of specialists, to make your life easier and stress-free.
                             <br />
@@ -102,9 +102,9 @@ const AboutUs = () => {
                 </svg>
                 <div className="container mx-auto px-6 py-10 lg:py-20">
                     <div className="lg:flex gap-10 items-center">
-                        <div className="lg:w-1/2 ">
+                        <div className="lg:w-1/2 md:p-5 lg:p-8">
                             <div className="">
-                                <Lottie options={handshakeAnimate} style={{ width: '100%', height: '100%' }}                                />
+                                <Lottie options={handshakeAnimate} style={{ width: '100%', height: '100%' }} />
                             </div>
                         </div>
                         <div className="lg:w-1/2 md:pr-12 lg:pr-16">
