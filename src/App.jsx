@@ -6,7 +6,8 @@ import ContactUs from './pages/contactUs';
 import 'aos/dist/aos.css';
 import AOS from 'aos';
 import './App.css';
-
+import AboutUs from './pages/aboutUs';
+import OurServices from './pages/ourServices';
 function App() {
 
   useEffect(() => {
@@ -15,9 +16,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path="/contactus" element={<ContactUs/>}/>
-        <Route path="/signup" element={<SignUp/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/our-services" elemeent={<OurServices />}/>
       </Routes>
 
     </Router>

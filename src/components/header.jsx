@@ -40,7 +40,7 @@ const Header = () => {
 
                             </li>
                             <li className={` relative group py-2 ${location.pathname == "/aboutus" ? "text-blue-700" : ""}`}>
-                                <Link to="/">ABOUT US</Link>
+                                <Link to="/about-us">ABOUT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
                             <li className="hover:text-blue-500 relative group py-2">
@@ -82,41 +82,42 @@ const Header = () => {
                 </div>
                 <ul className="mt-2 p-5">
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link to="/">
+                        <Link onClick={() => setIsOpen(false)} to="/">
                             Home
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link >
+                        <Link onClick={() => setIsOpen(false)} to="/about-us">
+                            About Us
+                        </Link>
+                    </li>
+                    <li className="py-3 font-medium text-gray-500 border-b">
+                        <Link onClick={() => setIsOpen(false)} >
                             FAQs
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b flex justify-between items-center">
-                        <Link>
+                        <Link onClick={() => setIsOpen(false)}>
                             OUR SERVICES
                         </Link>
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.75em" height="1em" viewBox="0 0 16 7"><path fill="currentColor" d="M8 6.5a.47.47 0 0 1-.35-.15l-4.5-4.5c-.2-.2-.2-.51 0-.71s.51-.2.71 0l4.15 4.15l4.14-4.14c.2-.2.51-.2.71 0s.2.51 0 .71l-4.5 4.5c-.1.1-.23.15-.35.15Z" /></svg>
                         </span>
                     </li>
+
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link to="/">
+                        <Link onClick={() => setIsOpen(false)}>
                             About Us
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link>
-                            About Us
-                        </Link>
-                    </li>
-                    <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link to="/contactus">
+                        <Link onClick={() => setIsOpen(false)} to="/contactus">
                             Contact Us
                         </Link>
                     </li>
 
                     <li className="py-3">
-                        <Link to="/signup" className="bg-blue-500 rounded-3xl text-center w-full h-10 font-medium text-white pt-2 pb-3 block">
+                        <Link onClick={() => setIsOpen(false)} to="/signup" className="bg-blue-500 rounded-3xl text-center w-full h-10 font-medium text-white pt-2 pb-3 block">
                             Sign Up
                         </Link>
                     </li>
