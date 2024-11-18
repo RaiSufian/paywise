@@ -37,7 +37,7 @@ const FaqsList = () => {
 
 
         <section className="container mx-auto lg:flex flex-wrap px-6 pb-10">
-            <div className="lg:w-3/5 lg:pr-3">
+            <div className="w-full lg:w-3/5 lg:pr-3">
                 <h2 className="text-sm text-blue-500  mb-2">FAQ's</h2>
                 <h3 className="text-4xl pb-8 font-bold text-slate-700 mb-4">Frequently Ask Questions</h3>
                 <div className="my-5">
@@ -159,7 +159,7 @@ const FaqsList = () => {
                     </div>
                 </div>
             </div >
-            <div className="lg:w-2/5 lg:pl-6">
+            <div className="w-full lg:w-2/5 lg:pl-6">
                 <div className="faqs_form py-10 px-7 ">
                     <h3 className="font-bold text-3xl text-white mb-6"> <span className="text-black">Do</span> You Have More Questions?</h3>
                     <Box

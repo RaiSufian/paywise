@@ -20,7 +20,7 @@ const Faqs = () => {
                     </span>
                 </div>
                 <div className="lg:w-1/2 py-20 lg:py-10">
-                    <div className="px-14 flex items-center justify-center w-full h-full text-white">
+                    <div className="px-5 md:px-14 flex items-center justify-center w-full h-full text-white">
                         <div className="text-center">
                             <h1 className="text-4xl font-bold  mb-6">Paywize</h1>
                             <h2 className="pb-8">At Smart Cash Umbrella, we aim to simplify and streamline the contracting process for our clients.</h2>
