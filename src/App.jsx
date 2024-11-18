@@ -9,6 +9,7 @@ import './App.css';
 import AboutUs from './pages/aboutUs';
 import OurServices from './pages/ourServices';
 import { useLocation } from "react-router-dom";
+import Faqs from './pages/faqs';
 function App() {
 
 
@@ -29,6 +30,7 @@ function App() {
       <Route path="/signup" element={<SignUp />} />
       <Route path="/about-us" element={<AboutUs />} />
       <Route path="/our-services" element={<OurServices />} />
+      <Route path="/faqs" element={<Faqs />} />
     </Routes>
 
 

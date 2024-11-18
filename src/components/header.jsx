@@ -39,15 +39,15 @@ const Header = () => {
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
 
                             </li>
-                            <li className={` relative group py-2 ${location.pathname == "/aboutus" ? "text-blue-700" : ""}`}>
+                            <li className={` relative group py-2 ${location.pathname == "/about-us" ? "text-blue-700" : ""}`}>
                                 <Link to="/about-us">ABOUT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
                             <li className="hover:text-blue-500 relative group py-2">
-                                <Link to="/">FAQs</Link>
+                                <Link to="/faqs">FAQs</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
-                            <li className="hover:text-blue-500 relative group py-2">
+                            <li className={`hover:text-blue-500 relative group py-2 ${location.pathname == "/our-services" ? "text-blue-700" : ""}`}>
                                 <div className="flex gap-1 items-center">
 
                                     <Link to="/our-services">OUR SERVICES</Link>
@@ -92,7 +92,7 @@ const Header = () => {
                         </Link>
                     </li>
                     <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link onClick={() => setIsOpen(false)} >
+                        <Link to="/faqs" onClick={() => setIsOpen(false)} >
                             FAQs
                         </Link>
                     </li>
