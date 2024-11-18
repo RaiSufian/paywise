@@ -346,7 +346,6 @@ const SignUp = () => {
                                                     width: "150px",
                                                     height: "50px",
                                                     fontSize: "18px",
-                                                    color: '#41B9EE',
                                                     margin: "8px",
                                                     color: "#fff",
                                                     borderRadius: '20px',

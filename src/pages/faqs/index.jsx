@@ -5,6 +5,7 @@ import img2 from "../../assets/whatdo2.jpg";
 import { Link } from "react-router-dom";
 import img1 from "../../assets/faqs.jpg";
 import { Button } from "@mui/material";
+import FaqsList from "./faqs";
 
 const Faqs = () => {
     return (
@@ -14,7 +15,7 @@ const Faqs = () => {
             <Header />
             <section className="flex flex-wrap faq_back lg:mb-20">
                 <div className="hidden lg:block lg:w-1/2 w-full h-56 lg:h-[calc(100%+70px)] relative">
-                    <img src={img2} className="w-full h-full object-cover hover:rotate-6" />
+                    <img data-aos="zoom-in" src={img2} className="w-full h-full object-cover hover:rotate-6" />
                     <span className="absolute top-0 right-0 left-0 bottom-0 object1_bg z-100">
                     </span>
                 </div>
@@ -36,7 +37,11 @@ const Faqs = () => {
                 </div>
             </section>
             <section className="container mx-auto px-2 md:px-6 py-6 lg:py-14">
-                <div className="flex flex-wrap justify-center">
+                <div
+                    data-aos="fade-up"
+                    data-aos-easing="ease-in-back"
+                    data-aos-delay="300"
+                    className="flex flex-wrap justify-center">
                     <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">01</span>
@@ -46,7 +51,11 @@ const Faqs = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="500"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">02</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Employment</h3>
@@ -55,7 +64,11 @@ const Faqs = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="700"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">03</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Contracting</h3>
@@ -64,7 +77,11 @@ const Faqs = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="900"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">04</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Invoicing</h3>
@@ -72,7 +89,11 @@ const Faqs = () => {
                                 We invoice your agency for the work you've completed, including all employment costs such as employer's NICs and holiday entitlement.             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="1100"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">05</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Payment</h3>
@@ -81,7 +102,11 @@ const Faqs = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="1300"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">06</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Deductions</h3>
@@ -90,7 +115,11 @@ const Faqs = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
+                    <div
+                        data-aos="fade-up"
+                        data-aos-easing="ease-in-back"
+                        data-aos-delay="1500"
+                        className="w-full md:w-1/2 lg:w-1/4 py-2 px-5 md:p-2 ">
                         <div className="bg-[#696969] py-6 px-6 h-80 md:h-96 transition hover:bg-black hover:scale-105">
                             <span className="text-2xl font-semibold leading-loose text-white">07</span>
                             <h3 className="text-blue-500 text-3xl mb-3 font-bold">Notification</h3>
@@ -101,7 +130,7 @@ const Faqs = () => {
                 </div>
             </section>
             <section className="container mx-auto px-3 md:px-6 pb-10">
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap items-center">
                     <div className=" w-full lg:w-1/2 md:pr-12 lg:pr-20 ">
                         <h4 className="text-3xl md:text-5xl font-bold">Are you questioning whether Smart Cash Umbrella is the right fit for you?</h4>
                         <p className="py-2 leading-loose text-stone-500">
@@ -109,8 +138,10 @@ const Faqs = () => {
                             At Smart Cash Umbrella, we make joining us a breeze. Once you decide to work with us, we’ll reach out to your agency to introduce ourselves (if we haven’t already). From there, we’ll guide you through the process and provide you with all the support and assistance you need.
                         </p>
                     </div>
-                    <div className="w-full lg:w-1/2">
-                        <img src={img1} className="w-full h-60 lg:h-full rounded object-cover" />
+                    <div className="w-full lg:w-1/2 ">
+                        <div className="lg:m-10">
+                            <img src={img1} className=" w-full h-60 lg:h-full rounded object-cover" />
+                        </div>
                     </div>
                 </div>
             </section>
@@ -170,6 +201,7 @@ const Faqs = () => {
                     </Link>
                 </div>
             </section>
+            <FaqsList />
             <Footer />
         </>
     )
