@@ -7,7 +7,7 @@ const Header = () => {
     const [isSticky, setIsSticky] = useState(false);
 
     const location = useLocation();
-    console.log("this is the location", location.pathname);
+    // console.log("this is the location", location.pathname);
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
@@ -43,7 +43,7 @@ const Header = () => {
                                 <Link to="/about-us">ABOUT US</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
-                            <li className="hover:text-blue-500 relative group py-2">
+                            <li className={`hover:text-blue-500 relative group py-2 ${location.pathname == "/faqs" ? "text-blue-700" : ""}`}>
                                 <Link to="/faqs">FAQs</Link>
                                 <span class="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-700 transition-all duration-300 group-hover:w-full"></span>
                             </li>
@@ -105,11 +105,7 @@ const Header = () => {
                         </span>
                     </li>
 
-                    <li className="py-3 font-medium text-gray-500 border-b">
-                        <Link onClick={() => setIsOpen(false)}>
-                            About Us
-                        </Link>
-                    </li>
+                   
                     <li className="py-3 font-medium text-gray-500 border-b">
                         <Link onClick={() => setIsOpen(false)} to="/contactus">
                             Contact Us

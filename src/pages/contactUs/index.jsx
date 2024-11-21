@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Footer from "../../components/footer";
+import { useState } from "react";
 const ContactUs = () => {
     const textFeild = {
         backgroundColor: 'transparent',
@@ -16,6 +17,55 @@ const ContactUs = () => {
             marginBottom: '15px',
         },
     }
+    const initialFormValues = {
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+    };
+    const [formValues, setFormValues] = useState(initialFormValues);
+    const [formErrors, setFormErrors] = useState({
+        name: '',
+        phone: '',
+        email: '',
+    });
+    // on form submit
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const errors = {};
+        if (!formValues.name.trim()) errors.name = 'Name is required';
+        if (!formValues.phone.trim()) errors.phone = 'Phone number is required';
+        if (!formValues.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)) {
+            errors.email = 'Enter a valid email address';
+        }
+
+        setFormErrors(errors);
+
+        if (Object.keys(errors).length === 0) {
+            //  console.log('Form Submitted:', formValues);
+            setFormValues(initialFormValues);
+
+        }
+    };
+    // update value of formvalues
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+
+
+        setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }));
+
+      
+    };
 
     return (
 
@@ -98,8 +148,8 @@ const ContactUs = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Email
                                         </label>
-                                        <a href="mailto:03093994393" className="block text-stone-500">
-                                            info@examplexyz.com
+                                        <a href="mailto:admin@paywizelimited.co.uk" className="block text-stone-500">
+                                        admin@paywizelimited.co.uk
 
                                         </a>
                                     </div>
@@ -112,7 +162,7 @@ const ContactUs = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Phone:
                                         </label>
-                                        <a href="mailto:03093994393" className="block text-stone-500">
+                                        <a href="tell:03093994393" className="block text-stone-500">
                                             0303 865 8237
                                         </a>
                                     </div>
@@ -125,7 +175,7 @@ const ContactUs = () => {
                                     data-aos="zoom-in-up"
                                     data-aos-easing="ease-out-cubic"
                                     data-aos-duration="1000"
-                                    data-aos-delay="500">
+                                >
                                     <h2 className="font-bold text-2xl mt-2">Contact Us</h2>
                                     <p className="my-2 text-zinc-400">Please complete the form below to discover more about our services.</p>
                                     <Box
@@ -133,6 +183,7 @@ const ContactUs = () => {
                                         sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
                                         noValidate
                                         autoComplete="off"
+                                        onSubmit={handleSubmit}
                                     >
                                         <div>
                                             <TextField
@@ -140,12 +191,22 @@ const ContactUs = () => {
                                                 label="Your Name"
                                                 type="text"
                                                 sx={textFeild}
+                                                name="name"
+                                                value={formValues.name}
+                                                onChange={handleChange}
+                                                error={!!formErrors.name}
+                                                helperText={formErrors.name}
                                             />
                                             <TextField
 
                                                 label="Your Phone Number"
                                                 type="number"
                                                 sx={textFeild}
+                                                name="phone"
+                                                value={formValues.phone}
+                                                onChange={handleChange}
+                                                error={!!formErrors.phone}
+                                                helperText={formErrors.phone}
 
                                             />
                                             <TextField
@@ -153,23 +214,25 @@ const ContactUs = () => {
                                                 label="Your E-mail"
                                                 type="email"
                                                 sx={textFeild}
+                                                name="email"
+                                                value={formValues.email}
+                                                onChange={handleChange}
+                                                error={!!formErrors.email}
+                                                helperText={formErrors.email}
 
                                             />
-                                            <TextField
 
-                                                label="Subject"
-                                                type="text"
-                                                sx={textFeild}
-
-                                            />
                                             <TextField
                                                 id="outlined-multiline-static"
                                                 label="Your Message"
+                                                name="message"
                                                 multiline
-                                                rows={4} t
+                                                rows={4}
                                                 fullWidth
+                                                sx={textFeild}
                                                 variant="outlined"
-                                                sx={textFeild} s
+                                                value={formValues.message}
+                                                onChange={handleChange}
                                             />
                                             <Button
                                                 variant="outlined"
@@ -177,7 +240,7 @@ const ContactUs = () => {
                                                     width: "150px",
                                                     height: "50px",
                                                     fontSize: "18px",
-                                                    color: '#41B9EE',
+
                                                     margin: "8px",
                                                     color: "#fff",
                                                     borderRadius: '20px',
@@ -186,6 +249,7 @@ const ContactUs = () => {
                                                         backgroundColor: '#068AD3',
                                                     },
                                                 }}
+                                                type="submit"
                                             >Submit</Button>
                                         </div>
 

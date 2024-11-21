@@ -12,12 +12,6 @@ body {
   background: linear-gradient(90deg, rgba(65, 184, 238, 1) 34%, rgba(4, 136, 210, 1) 100%);
 }
 
-
-
-
-
-
-
 .whatDo {
   background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("./assets/whatdo3.jpg");
   background-size: cover;
@@ -37,46 +31,56 @@ body {
 }
 
 .form_area {
-  background: rgb(65,185,238);
-  background: linear-gradient(201deg, rgba(65,185,238,1) 30%, rgba(0,102,161,1) 100%);
+  background: rgb(65, 185, 238);
+  background: linear-gradient(201deg, rgba(65, 185, 238, 1) 30%, rgba(0, 102, 161, 1) 100%);
   box-shadow: 10px 5px 15px rgba(16, 16, 17, 0.4);
 }
-.footer_bg{
- background-image: linear-gradient(180deg, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.3) 100%),  url("./assets/menubg.jpg");
- /* background-repeat: no-repeat; */
- /* background-size: cover; */
-/* background-position: center; */
+
+.footer_bg {
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3) 100%), url("./assets/menubg.jpg");
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+  /* background-position: center; */
 }
-.social_bg{
-  background: rgb(65,185,238);
-background: linear-gradient(201deg, rgba(65,185,238,1) 30%, rgba(0,102,161,1) 100%);
+
+.social_bg {
+  background: rgb(65, 185, 238);
+  background: linear-gradient(201deg, rgba(65, 185, 238, 1) 30%, rgba(0, 102, 161, 1) 100%);
 }
-.bread_crumb{
-  background-image:linear-gradient(201deg, rgba(65,185,238,0.5) 30%, rgba(0,102,161,0.5) 100%), url("./assets/slide3.jpg");
+
+.bread_crumb {
+  background-image: linear-gradient(201deg, rgba(65, 185, 238, 0.5) 30%, rgba(0, 102, 161, 0.5) 100%), url("./assets/slide3.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-.contact_item{
+
+.contact_item {
   box-shadow: 7px 5px 30px 0px rgba(71.99999999999999, 72.99999999999999, 120.99999999999999, 0.15);
 }
+
 .contact_from {
   box-shadow: 5px 7px 30px 0px rgba(71.99999999999999, 72.99999999999999, 120.99999999999999, 0.15);
 
 }
-.faq_back{
-  background-image: linear-gradient(196deg, rgba(0,32,57,0.7) 30%, rgba(4,135,211,0.8) 100%) , url("./assets/welcome.jpg");
+
+.faq_back {
+  background-image: linear-gradient(196deg, rgba(0, 32, 57, 0.7) 30%, rgba(4, 135, 211, 0.8) 100%), url("./assets/welcome.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
   height: 80vh;
 }
-.object1_bg{
-  background: rgb(27,158,0);
-  background: linear-gradient(243deg, rgba(27,158,0,0.6) 30%, rgba(4,135,211,0.6) 100%);}
-@media screen and (max-width:678px){
-  .faq_back{
+
+.object1_bg {
+  background: rgb(27, 158, 0);
+  background: linear-gradient(243deg, rgba(27, 158, 0, 0.6) 30%, rgba(4, 135, 211, 0.6) 100%);
+}
+
+@media screen and (max-width:678px) {
+  .faq_back {
 
     height: auto;
   }
 }
+

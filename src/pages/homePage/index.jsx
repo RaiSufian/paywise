@@ -7,6 +7,7 @@ import Services from "./services";
 import WhyUs from "./whyUs";
 import ContactUs from "./contactUs";
 import Footer from "../../components/footer";
+import Hero2 from "./hero2";
 
 const Home = () => {
     return (

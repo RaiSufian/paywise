@@ -47,10 +47,10 @@ const Hero = () => {
                                         <div className="pl-10  w-full h-full lg:h-screen flex items-center">
                                             <div>
                                                 <h3 className=" tracking-wider  uppercase font-sans text-sm md:text-xl font-bold">
-                                                    <AnimateBounce />
+
                                                 </h3>
                                                 <h2 className="leading-none lg:leading-normaluppercase text-xl md:text-5xl lg:text-7xl font-bold hero-text" id="hero-text">
-                                                    <AnimateUp />
+
                                                 </h2>
                                                 <div className="pt-3 md:pt-4 lg:pt-8 flex gap-5">
                                                     <div data-aos="fade-right"
@@ -110,13 +110,13 @@ const Hero = () => {
                     <li className="splide__slide">
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
-                                <img src={img2} alt='slider image' className="slideImg"  />
+                                <img src={img2} alt='slider image' className="slideImg" />
                                 <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                     <div className="pl-3 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                         {activeSlide === 1 &&
                                             <div className="text-center w-full">
                                                 <h2 className="uppercase text-xl md:text-4xl lg:text-6xl font-bold">
-                                                    <AnimateRight />
+
                                                 </h2>
                                                 <div className="pt-3 md:pt-5 lg:pt-8"
                                                     data-aos="fade-bottom"
@@ -151,13 +151,13 @@ const Hero = () => {
                     <li className="splide__slide">
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
-                                <img src={img3} alt='slider image' className="slideImg"  />
+                                <img src={img3} alt='slider image' className="slideImg" />
                                 {activeSlide === 2 &&
                                     <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                         <div className="px-2 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                             <div className="text-center w-full">
-                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
-                                                <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  <AnimateDown /></h1>
+                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold"></h2>
+                                                <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  </h1>
                                                 <div className="pt-4 md:pt-4 lg:pt-8"
                                                     data-aos="fade-right"
                                                     data-aos-easing="ease-in-back"

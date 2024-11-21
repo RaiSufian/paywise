@@ -145,7 +145,7 @@ const Faqs = () => {
                     </div>
                 </div>
             </section>
-            <section className="container mx-auto px-2 md:px-6 lg:flex items-center gap-6 py-20 ">
+            <section className="container mx-auto px-2 md:px-6 lg:flex items-center gap-6 py-4 lg:py-20 ">
                 <div className="w-full lg:w-1/2 flex flex-wrap ">
                     <div className="w-full md:w-1/2 px-2 py-2 md:py-0">
                         <div className="bg-[#F1F6FC] rounded-3xl gap-3 flex flex-col  items-center px-3 md:px-6 py-5 md:py-10">
@@ -188,7 +188,7 @@ const Faqs = () => {
                                 width: "270px",
                                 height: "50px",
                                 fontSize: "18px",
-                                color: '#41B9EE',
+                               
                                 margin: "8px",
                                 color: "#fff",
                                 borderRadius: '20px',

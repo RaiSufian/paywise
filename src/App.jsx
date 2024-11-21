@@ -12,12 +12,10 @@ import { useLocation } from "react-router-dom";
 import Faqs from './pages/faqs';
 function App() {
 
-
-  // AOS animation 
   useEffect(() => {
     AOS.init();
   }, [])
-  // scroll page start
+
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);

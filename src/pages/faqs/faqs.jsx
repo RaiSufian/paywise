@@ -211,7 +211,7 @@ const FaqsList = () => {
                                     width: "100%",
                                     height: "50px",
                                     fontSize: "18px",
-                                    color: '#41B9EE',
+                                    
                                     margin: "8px",
                                     borderColor: 'white',
                                     borderRadius: '20px',

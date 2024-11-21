@@ -24,7 +24,7 @@ const Footer = () => {
                                 </li>
                                 <li className="flex gap-2 items-center text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-blue-500" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M5 5h13a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3m0 1c-.5 0-.94.17-1.28.47l7.78 5.03l7.78-5.03C18.94 6.17 18.5 6 18 6zm6.5 6.71L3.13 7.28C3.05 7.5 3 7.75 3 8v9a2 2 0 0 0 2 2h13a2 2 0 0 0 2-2V8c0-.25-.05-.5-.13-.72z" /></svg>
-                                    <a href="#" className="hover:text-blue-500 transition-all">mashancs571@gmail.com</a>
+                                    <a href="mailto:admin@paywizelimited.co.uk" className="hover:text-blue-500 transition-all">admin@paywizelimited.co.uk</a>
                                 </li>
                                 <li className="flex gap-2 items-center text-lg">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-blue-500" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor"><circle cx="12" cy="12" r="8.5" /><path stroke-linecap="round" d="M5 2.804A6 6 0 0 0 2.804 5M19 2.804A6 6 0 0 1 21.196 5M12 6.5v5.25c0 .138.112.25.25.25h4.25" /></g></svg>

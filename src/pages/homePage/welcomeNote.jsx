@@ -23,24 +23,24 @@ const WelcomeNote = () => {
                             <p data-aos="fade-up" data-aos-delay="2000" data-aos-duration="1000" className="pb-4 pt-1 text-justify">
                                 Our expert team brings extensive practical experience, making contracting easy, clear, and stress-free for every client. Specializing in tax compliance, payroll, administration, client service, and HR, we have supported thousands of contractors in reaching their financial goals smoothly and confidently. Join the many satisfied contractors who have successfully navigated the contracting world with our guidance</p>
                             <ul>
-                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="1500" data-aos-duration="1000">
+                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="1000" data-aos-duration="1000">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-green-500 mt-1" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M17.47 250.9C88.82 328.1 158 397.6 224.5 485.5c72.3-143.8 146.3-288.1 268.4-444.37L460 26.06C356.9 135.4 276.8 238.9 207.2 361.9c-48.4-43.6-126.62-105.3-174.38-137z" /></svg>
                                     <span>Leading provider of compliant, onshore PAYE payroll.</span>
                                 </li>
-                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="2000" data-aos-duration="1000">
+                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="1200" data-aos-duration="1000">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-green-500 mt-1" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M17.47 250.9C88.82 328.1 158 397.6 224.5 485.5c72.3-143.8 146.3-288.1 268.4-444.37L460 26.06C356.9 135.4 276.8 238.9 207.2 361.9c-48.4-43.6-126.62-105.3-174.38-137z" /></svg>
                                     <span>Expert team with hands-on experience simplifies contracting for clients.</span>
                                 </li>
-                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="2500" data-aos-duration="1000">
+                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="1400" data-aos-duration="1000">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-green-500 mt-1" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M17.47 250.9C88.82 328.1 158 397.6 224.5 485.5c72.3-143.8 146.3-288.1 268.4-444.37L460 26.06C356.9 135.4 276.8 238.9 207.2 361.9c-48.4-43.6-126.62-105.3-174.38-137z" /></svg>
                                     <span>Focused on tax compliance, payroll, and client service</span>
                                 </li>
-                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="3000" data-aos-duration="1000">
+                                <li className="flex items-start gap-2 pt-3" data-aos="fade-up" data-aos-delay="1600" data-aos-duration="1000">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="text-green-500 mt-1" width="1em" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M17.47 250.9C88.82 328.1 158 397.6 224.5 485.5c72.3-143.8 146.3-288.1 268.4-444.37L460 26.06C356.9 135.4 276.8 238.9 207.2 361.9c-48.4-43.6-126.62-105.3-174.38-137z" /></svg>
                                     <span>Thousands of contractors have achieved their financial goals with our support</span>
                                 </li>
                             </ul>
-                            <div className="mt-5 flex justify-end uppercase" data-aos="fade-bottom" data-aos-delay="3000" data-aos-duration="1000">
+                            <div className="mt-5 flex justify-end uppercase" data-aos="fade-bottom" data-aos-delay="1600" data-aos-duration="1000">
                                 <Button variant="contained" sx={{
                                     fontSize: '16px',
                                     padding: '8px 24px 6px 24px',
