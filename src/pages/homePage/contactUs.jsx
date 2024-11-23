@@ -1,7 +1,9 @@
-import Box from '@mui/material/Box';
+import { ToastContainer, toast } from 'react-toastify';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import Box from '@mui/material/Box';
 import { useState } from 'react';
+import axios from "axios";
 const ContactUs = () => {
     const initialFormValues = {
         name: '',
@@ -59,7 +61,28 @@ const ContactUs = () => {
 
         if (Object.keys(errors).length === 0) {
             // console.log('Form Submitted:', formValues);
-            setFormValues(initialFormValues);
+
+            axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
+                .then((resp) => {
+                    console.log("contact us form resp is:", resp);
+                    if (resp.status == 200) {
+                        setFormValues(initialFormValues);
+                        toast.success('Thank you Contact Us', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .error((error) => {
+                    console.log("contact us from error is:", error);
+                })
+
 
         }
     };
@@ -86,6 +109,7 @@ const ContactUs = () => {
 
     return (
         <section className="" >
+            <ToastContainer/>
             <div className="container mx-auto pb-6 px-3 md:px-6">
                 <div className="lg:flex items-center">
                     <div className="lg:w-1/2 md:px-20 ">
@@ -160,7 +184,7 @@ const ContactUs = () => {
                                             label="Your Message"
                                             name="message"
                                             multiline
-                                            rows={4} 
+                                            rows={4}
                                             fullWidth
                                             variant="outlined"
                                             sx={textFeild}
@@ -174,7 +198,7 @@ const ContactUs = () => {
                                                 width: "100%",
                                                 height: "50px",
                                                 fontSize: "18px",
-                                               
+
                                                 margin: "8px",
                                                 borderColor: 'white',
                                                 borderRadius: '20px',

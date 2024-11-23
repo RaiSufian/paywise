@@ -14,9 +14,6 @@ import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 
-
-
-
 const SignUp = () => {
     const textField = {
         backgroundColor: 'transparent',
@@ -28,6 +25,12 @@ const SignUp = () => {
             marginBottom: '15px',
         },
     }
+    const initialFormValues = {
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+    };
     return (
 
         <>

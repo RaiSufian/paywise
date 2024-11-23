@@ -16,12 +16,14 @@
     "@mui/x-date-pickers": "^7.22.2",
     "@splidejs/splide": "^4.1.4",
     "aos": "^3.0.0-beta.6",
+    "axios": "^1.7.7",
     "dayjs": "^1.11.13",
     "gsap": "^3.12.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-lottie": "^1.2.7",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "react-toastify": "^10.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
