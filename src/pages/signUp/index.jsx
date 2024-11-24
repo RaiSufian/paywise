@@ -13,27 +13,177 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
+import { FormControl, FormHelperText } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
+
+import dayjs from 'dayjs';
+import axios from "axios";
+
+import { useState } from "react";
 
 const SignUp = () => {
     const textField = {
         backgroundColor: 'transparent',
         borderRadius: "50px",
-        marginBottom: '20px',
+        marginBottom: '0px',
 
         '& .MuiOutlinedInput-root': {
             borderRadius: '20px',
-            marginBottom: '15px',
+            marginBottom: '0px',
         },
     }
     const initialFormValues = {
-        name: '',
-        phone: '',
-        email: '',
-        message: '',
+        title: '',
+        f_name: '',
+        l_name: '',
+        s_name: '',
+        dob: '',
+        marital_statu: '',
+        e_mail: '',
+        h_address: '',
+        post_code: '',
+        mobile_num: '',
+        nationality: '',
+        share_code: '',
+        NI_number: '',
+        bank_number: '',
+        account_number: '',
+        sort_code: '',
+        job_title: [],
+        agency_name: '',
+        comment: '',
+        passport: '',
+        bank_details: '',
+        proof: '',
+        confirmation: '',
+        proof_right_work: '',
+        proof_address: '',
+        proof_ni: '',
+        proof_bank: ''
     };
+    const [signUp, setSignUp] = useState(initialFormValues);
+    const [formErrors, setFormErrors] = useState({
+        title: '',
+        f_name: '',
+        s_name: '',
+        dob: '',
+        marital_statu: '',
+        e_mail: '',
+        h_address: '',
+        post_code: '',
+        mobile_num: '',
+        nationality: '',
+        NI_number: '',
+        bank_number: '',
+        account_number: '',
+        sort_code: '',
+        agency_name: '',
+        confirmation: '',
+
+    });
+
+
+    // Submit Form
+    const handleSubmit = (e) => {
+        // console.log("This form is submit", signUp);
+        e.preventDefault();
+        const errors = {};
+
+        if (!signUp.title.trim()) errors.title = 'The field is required.';
+        if (!signUp.f_name.trim()) errors.f_name = 'The field is required.';
+        if (!signUp.s_name.trim()) errors.s_name = 'The field is required.';
+        if (!signUp.dob.trim()) errors.dob = 'The field is required.';
+        if (!signUp.marital_statu.trim()) errors.marital_statu = 'The field is required.';
+        if (!signUp.e_mail.trim()) errors.e_mail = 'The field is required.';
+        if (!signUp.h_address.trim()) errors.h_address = 'The field is required.';
+        if (!signUp.post_code.trim()) errors.post_code = 'The field is required.';
+        if (!signUp.mobile_num.trim()) errors.mobile_num = 'The field is required.';
+        if (!signUp.nationality.trim()) errors.nationality = 'The field is required.';
+        if (!signUp.NI_number.trim()) errors.NI_number = 'The field is required.';
+        if (!signUp.bank_number.trim()) errors.bank_number = 'The field is required.';
+        if (!signUp.account_number.trim()) errors.account_number = 'The field is required.';
+        if (!signUp.sort_code.trim()) errors.sort_code = 'The field is required.';
+        if (!signUp.agency_name.trim()) errors.agency_name = 'The field is required.';
+        if (!signUp.confirmation.trim()) errors.confirmation = 'The field is required.';
+        setFormErrors(errors);
+        if (Object.keys(errors).length === 0) {
+            
+             console.log('Form Submitted:', signUp);
+            axios.post(`index.php?action=signup&mail-address=${signUp.e_mail}&your-title=${signUp.title}&first-name=${signUp.f_name}&middle-name=${signUp.l_name}&sur-name=${signUp.s_name}&date-of-birth=${signUp.dob}&marital-status=${signUp.marital_statu == 'yes' ? true : false}&home-address=${signUp.h_address}&post-code=${signUp.post_code}&mobile-number=${signUp.mobile_num}&nationality=${signUp.nationality}&share-code=${signUp.sort_code}&ni-number=${signUp.NI_number}&bank-name=${signUp.bank_number}&account-number=${signUp.account_number}&sort-code=${signUp.sort_code}&agency-name=${signUp.agency_name}&comment=${signUp.comment}&proof-right-work=${signUp.proof_right_work}&proof-address=${signUp.proof_address}&proof-bank=${signUp.proof_bank}&proof-ni=${signUp.proof_ni}&confirmation=${signUp.confirmation}&job-title=${signUp.job_title}`,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                }
+            )
+                .then((resp) => {
+                    console.log("Sign Up form resp is:", resp);
+                    if (resp.status == 200) {
+                        // setSignUp(initialFormValues);
+                        toast.success('Thank you for you message. It has been send', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log("Sign Up from error is:", error);
+                })
+        }
+
+    }
+    // update value of formvalues
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setSignUp((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+
+
+        setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }));
+
+    };
+    // handle checkbox values
+    const handleCheckboxChange = (e) => {
+        const { value, checked } = e.target;
+
+        setSignUp((prevValues) => {
+            const updatedJobTitles = checked
+                ? [...prevValues.job_title, value] // Add value if checked
+                : prevValues.job_title.filter((title) => title !== value); // Remove value if unchecked
+
+            return {
+                ...prevValues,
+                job_title: updatedJobTitles,
+            };
+        });
+    };
+
+    // handle file from forms
+    const handleFileChange = (e) => {
+        const { name } = e.target;
+
+        setSignUp((prevValues) => ({
+            ...prevValues,
+            [name]: e.target.files[0],
+        }));
+    }
+
     return (
 
         <>
+            <ToastContainer />
             <Topbar />
             <Header />
             <BreadCrumb name="Sign Up" link="signup" />
@@ -78,7 +228,7 @@ const SignUp = () => {
                 </svg>
                 <div className="container mx-auto  pt-8 pb-14 md:py-24 lg:py-44 px-1 lg:px-8">
                     <div className="lg:flex gap-14">
-                        <div className="lg:w-1/2 pr-10 pt-10">
+                        <div className="lg:w-1/2 pr-10 pt-10 sticky top-0">
                             <h2 className="font-bold text-2xl md:text-3xl lg:text-5xl text-stone-900">Get In Touch</h2>
                             <p className="pt-4 text-stone-900">
                                 Our team of committed professionals is here to help with any
@@ -142,7 +292,9 @@ const SignUp = () => {
                                         component="form"
                                         sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
                                         noValidate
-                                        autoComplete="off"
+
+                                        onSubmit={handleSubmit}
+                                        enctype="multipart/form-data"
                                     >
                                         <div>
                                             <TextField
@@ -150,15 +302,23 @@ const SignUp = () => {
                                                 label="Title *"
                                                 type="text"
                                                 sx={textField}
+                                                name='title'
+                                                value={signUp.title}
+                                                onChange={handleChange}
+                                                error={!!formErrors.title}
+                                                helperText={formErrors.title}
                                             />
                                             <div className="md:flex gap-3">
                                                 <div className="md:w-1/2">
                                                     <TextField
-
                                                         label="First Name *"
                                                         type="text"
                                                         sx={textField}
-
+                                                        name='f_name'
+                                                        value={signUp.f_name}
+                                                        onChange={handleChange}
+                                                        error={!!formErrors.f_name}
+                                                        helperText={formErrors.f_name}
                                                     />
                                                 </div>
                                                 <div className="md:w-1/2">
@@ -167,6 +327,9 @@ const SignUp = () => {
                                                         label="Middle Name"
                                                         type="text"
                                                         sx={textField}
+                                                        name='l_name'
+                                                        value={signUp.l_name}
+                                                        onChange={handleChange}
 
                                                     />
                                                 </div>
@@ -175,14 +338,35 @@ const SignUp = () => {
                                                 label="Surname *"
                                                 type="text"
                                                 sx={textField}
+                                                name='s_name'
+                                                value={signUp.s_name}
+                                                onChange={handleChange}
+                                                error={!!formErrors.s_name}
+                                                helperText={formErrors.s_name}
                                             />
                                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                                 <DatePicker
                                                     label="Date of Birth *"
                                                     sx={textField}
-                                                // value={selectedDate}
-                                                // onChange={(newDate) => setSelectedDate(newDate)}
-                                                // renderInput={(params) => <TextField {...params} />}
+                                                    name='dob'
+                                                    value={signUp.dob ? dayjs(signUp.dob) : null}
+                                                    onChange={(newDate) =>
+                                                        handleChange({
+                                                            target: {
+                                                                name: 'dob',
+                                                                value: newDate ? newDate.toISOString() : null,
+                                                            },
+                                                        })
+                                                    }
+                                                    // Pass error and helperText to the internal TextField
+                                                    slotProps={{
+                                                        textField: {
+                                                            sx: textField,
+                                                            name: 'dob',
+                                                            error: !!formErrors.dob,
+                                                            helperText: formErrors.dob,
+                                                        },
+                                                    }}
                                                 />
                                             </LocalizationProvider>
                                             <TextField
@@ -190,6 +374,11 @@ const SignUp = () => {
                                                 label="Marital status *"
                                                 type="text"
                                                 sx={textField}
+                                                name='marital_statu'
+                                                value={signUp.marital_statu}
+                                                onChange={handleChange}
+                                                error={!!formErrors.marital_statu}
+                                                helperText={formErrors.marital_statu}
 
                                             />
                                             <TextField
@@ -197,12 +386,22 @@ const SignUp = () => {
                                                 label="E-mail"
                                                 type="email"
                                                 sx={textField}
+                                                name='e_mail'
+                                                value={signUp.e_mail}
+                                                onChange={handleChange}
+                                                error={!!formErrors.e_mail}
+                                                helperText={formErrors.e_mail}
 
                                             />
                                             <TextField
                                                 label="Home Address"
                                                 type="text"
                                                 sx={textField}
+                                                name='h_address'
+                                                value={signUp.h_address}
+                                                onChange={handleChange}
+                                                error={!!formErrors.h_address}
+                                                helperText={formErrors.h_address}
                                             />
                                             <div className="md:flex gap-3">
                                                 <div className="md:w-1/2">
@@ -210,6 +409,11 @@ const SignUp = () => {
                                                         label="Post Code *"
                                                         type="text"
                                                         sx={textField}
+                                                        name='post_code'
+                                                        value={signUp.post_code}
+                                                        onChange={handleChange}
+                                                        error={!!formErrors.post_code}
+                                                        helperText={formErrors.post_code}
                                                     />
                                                 </div>
                                                 <div className="md:w-1/2">
@@ -217,6 +421,11 @@ const SignUp = () => {
                                                         label="Mobile Number"
                                                         type="Number"
                                                         sx={textField}
+                                                        name='mobile_num'
+                                                        value={signUp.mobile_num}
+                                                        onChange={handleChange}
+                                                        error={!!formErrors.mobile_num}
+                                                        helperText={formErrors.mobile_num}
                                                     />
                                                 </div>
                                             </div>
@@ -226,6 +435,11 @@ const SignUp = () => {
                                                         label="Nationality *"
                                                         type="text"
                                                         sx={textField}
+                                                        name='nationality'
+                                                        value={signUp.nationality}
+                                                        onChange={handleChange}
+                                                        error={!!formErrors.nationality}
+                                                        helperText={formErrors.nationality}
                                                     />
                                                 </div>
                                                 <div className="md:w-1/2">
@@ -233,6 +447,8 @@ const SignUp = () => {
                                                         label="Share Code"
                                                         type="text"
                                                         sx={textField}
+                                                        name="share_code"
+                                                        onChange={handleChange}
                                                     />
                                                 </div>
                                             </div>
@@ -240,34 +456,91 @@ const SignUp = () => {
                                                 label="NI Number*"
                                                 type="text"
                                                 sx={textField}
+                                                name='NI_number'
+                                                value={signUp.NI_number}
+                                                onChange={handleChange}
+                                                error={!!formErrors.NI_number}
+                                                helperText={formErrors.NI_number}
                                             />
                                             <TextField
                                                 label="Bank Number*"
                                                 type="text"
                                                 sx={textField}
+                                                name='bank_number'
+                                                value={signUp.bank_number}
+                                                onChange={handleChange}
+                                                error={!!formErrors.bank_number}
+                                                helperText={formErrors.bank_number}
                                             />
                                             <TextField
                                                 label="Account Number*"
                                                 type="number"
                                                 sx={textField}
+                                                name='account_number'
+                                                value={signUp.account_number}
+                                                onChange={handleChange}
+                                                error={!!formErrors.account_number}
+                                                helperText={formErrors.account_number}
+                                            />
+                                            <TextField
+                                                label="Sort Code*"
+                                                type="number"
+                                                sx={textField}
+                                                name='sort_code'
+                                                value={signUp.sort_code}
+                                                onChange={handleChange}
+                                                error={!!formErrors.sort_code}
+                                                helperText={formErrors.sort_code}
                                             />
                                             <h4 className="mx-2 font-bold text-blue-500">Job Title *</h4>
                                             <div className="ml-3">
                                                 <FormGroup>
-                                                    <FormControlLabel required control={<Checkbox />} label="RGN" />
-                                                    <FormControlLabel required control={<Checkbox />} label="RMN" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="RGN"
+                                                        checked={signUp.job_title.includes("RGN")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="RGN" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="RMN"
+                                                        checked={signUp.job_title.includes("RMN")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="RMN" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="BAND 6" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="BAND"
+                                                        checked={signUp.job_title.includes("BAND")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="BAND" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="HCA" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="HCA"
+                                                        checked={signUp.job_title.includes("HCA")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="HCA" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="ITU" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="ITU"
+                                                        checked={signUp.job_title.includes("ITU")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="ITU" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="ODP" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="ODP"
+                                                        checked={signUp.job_title.includes("ODP")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="ODP" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="RNLD" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="RNLD"
+                                                        checked={signUp.job_title.includes("RNLD")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="RNLD" />
 
-                                                    <FormControlLabel required control={<Checkbox />} label="Others" />
+                                                    <FormControlLabel required control={<Checkbox
+                                                        value="Others"
+                                                        checked={signUp.job_title.includes("Others")}
+                                                        onChange={handleCheckboxChange}
+                                                    />} label="Others" />
 
 
                                                 </FormGroup>
@@ -279,15 +552,24 @@ const SignUp = () => {
                                                 label="Agency Name*"
                                                 type="text"
                                                 sx={textField}
+                                                name='agency_name'
+                                                value={signUp.agency_name}
+                                                onChange={handleChange}
+                                                error={!!formErrors.agency_name}
+                                                helperText={formErrors.agency_name}
                                             />
                                             <TextField
                                                 id="outlined-multiline-static"
                                                 label="Comment"
                                                 multiline
-                                                rows={4} t
+                                                rows={4}
                                                 fullWidth
                                                 variant="outlined"
                                                 sx={textField}
+                                                name='comment'
+                                                value={signUp.comment}
+                                                onChange={handleChange}
+
                                             />
                                             <div className="mt-4">
                                                 <h5 className="font-bold">Please Attach the documents</h5>
@@ -309,19 +591,39 @@ const SignUp = () => {
                                             <div>
                                                 <div className="mt-5">
                                                     <label>RIGHT TO WORK - PASSPORT AND VISA AS REQUIRED</label>
-                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                    <input
+                                                        name='proof_right_work'
+                                                        accept=".pdf, .doc, .docx, .jpg, .png, .jpeg, .txt, .xlsx"
+                                                        type="file"
+                                                        onChange={handleFileChange}
+                                                        className="bg-white py-3 px-5 rounded-2xl w-full" />
                                                 </div>
                                                 <div className="mt-5">
                                                     <label>PROOF OF ADDRESS - UTILITY BILL, COUNCIL TAX, DRIVING LICENCE</label>
-                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                    <input
+                                                        name='proof_address'
+                                                        accept=".pdf, .doc, .docx, .jpg, .png, .jpeg, .txt, .xlsx"
+                                                        type="file"
+                                                        onChange={handleFileChange}
+                                                        className="bg-white py-3 px-5 rounded-2xl w-full" />
                                                 </div>
                                                 <div className="mt-5">
                                                     <label>PROOF OF BANK DETAILS - BANK STATEMENT</label>
-                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                    <input
+                                                        name='proof_bank'
+                                                        accept=".pdf, .doc, .docx, .jpg, .png, .jpeg, .txt, .xlsx"
+                                                        type="file"
+                                                        onChange={handleFileChange}
+                                                        className="bg-white py-3 px-5 rounded-2xl w-full" />
                                                 </div>
                                                 <div className="mt-5">
                                                     <label>PROOF OF NI - P60, P45, NI CARD OR TAX LETTER</label>
-                                                    <input type="file" className="bg-white py-3 px-5 rounded-2xl w-full" />
+                                                    <input
+                                                        name='proof_ni'
+                                                        accept=".pdf, .doc, .docx, .jpg, .png, .jpeg, .txt, .xlsx"
+                                                        type="file"
+                                                        onChange={handleFileChange}
+                                                        className="bg-white py-3 px-5 rounded-2xl w-full" />
                                                 </div>
                                             </div>
                                             <p className="text-neutral-700 mt-5 pl-2">
@@ -333,15 +635,29 @@ const SignUp = () => {
                                                 money due to me into the above bank/building society account.
                                             </p>
                                             <div className="mt-5 mb-5 px-4 py-2 bg-white  md:w-1/2 rounded-2xl ">
-                                                <RadioGroup
-                                                    row
-                                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                                    name="row-radio-buttons-group"
+                                                <FormControl
+                                                    component="fieldset"
+                                                    error={!!formErrors.confirmation}
+                                                    helperText={formErrors.confirmation}
                                                 >
-                                                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                                                    <FormControlLabel value="male" control={<Radio />} label="Male" />
+                                                    <RadioGroup
+                                                        row
+                                                        aria-labelledby="demo-row-radio-buttons-group-label"
+                                                        name="confirmation"
+                                                        value={signUp.confirmation}
+                                                        onChange={handleChange}
 
-                                                </RadioGroup>
+
+                                                    >
+                                                        <FormControlLabel value={true} control={<Radio />} label="Yes" />
+                                                        <FormControlLabel value={false} control={<Radio />} label="No" />
+
+                                                    </RadioGroup>
+
+                                                    {formErrors.confirmation && (
+                                                        <FormHelperText>{formErrors.confirmation}</FormHelperText>
+                                                    )}
+                                                </FormControl>
                                             </div>
                                             <Button
                                                 variant="outlined"
@@ -357,6 +673,7 @@ const SignUp = () => {
                                                         backgroundColor: '#068AD3',
                                                     },
                                                 }}
+                                                type="submit"
                                             >Sign Up</Button>
                                         </div>
 

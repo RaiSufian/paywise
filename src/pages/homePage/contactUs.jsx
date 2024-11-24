@@ -64,7 +64,7 @@ const ContactUs = () => {
 
             axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
                 .then((resp) => {
-                    console.log("contact us form resp is:", resp);
+                    // console.log("contact us form resp is:", resp);
                     if (resp.status == 200) {
                         setFormValues(initialFormValues);
                         toast.success('Thank you Contact Us', {
@@ -79,11 +79,9 @@ const ContactUs = () => {
                         });
                     }
                 })
-                .error((error) => {
+                .catch((error) => {
                     console.log("contact us from error is:", error);
                 })
-
-
         }
     };
 
@@ -102,7 +100,6 @@ const ContactUs = () => {
             [name]: '',
         }));
 
-        // console.log("value of are:", formValues);
     };
 
 

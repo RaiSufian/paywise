@@ -7,9 +7,10 @@ import img1 from "../../assets/faqs.jpg";
 import { Button } from "@mui/material";
 import FaqsList from "./faqs";
 
-const Faqs = () => {
-    return (
 
+const Faqs = () => {
+   
+    return (
         <>
             <Topbar />
             <Header />
@@ -188,7 +189,7 @@ const Faqs = () => {
                                 width: "270px",
                                 height: "50px",
                                 fontSize: "18px",
-                               
+
                                 margin: "8px",
                                 color: "#fff",
                                 borderRadius: '20px',

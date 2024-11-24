@@ -2,8 +2,78 @@ import { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from "axios";
 
 const FaqsList = () => {
+
+    const initialFormValues = {
+        name: '',
+        phone: '',
+        email: '',
+        message: '',
+    };
+    const [formValues, setFormValues] = useState(initialFormValues);
+    const [formErrors, setFormErrors] = useState({
+        name: '',
+        phone: '',
+        email: '',
+    });
+    // on form submit
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const errors = {};
+        if (!formValues.name.trim()) errors.name = 'Name is required';
+        if (!formValues.phone.trim()) errors.phone = 'Phone number is required';
+        if (!formValues.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formValues.email)) {
+            errors.email = 'Enter a valid email address';
+        }
+
+        setFormErrors(errors);
+
+        if (Object.keys(errors).length === 0) {
+            // console.log('Form Submitted:', formValues);
+
+            axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
+                .then((resp) => {
+                    // console.log("contact us form resp is:", resp);
+                    if (resp.status == 200) {
+                        setFormValues(initialFormValues);
+                        toast.success('Thank you Contact Us', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log("contact us from error is:", error);
+                })
+        }
+    };
+    // update value of formvalues
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+
+
+        setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }));
+
+    };
 
     const [accordItem, setAccordItem] = useState(0);
     const textFeild = {
@@ -21,15 +91,15 @@ const FaqsList = () => {
                 borderColor: 'white',         // Keep border white on hover
             },
             '&.Mui-focused fieldset': {
-                borderColor: 'white',         
+                borderColor: 'white',
             },
-            color: 'white',                 
+            color: 'white',
         },
         '& .MuiInputLabel-root': {
-            color: 'white',                 
+            color: 'white',
         },
         '& .MuiInputLabel-root.Mui-focused': {
-            color: 'white',                 
+            color: 'white',
         },
     }
 
@@ -37,6 +107,7 @@ const FaqsList = () => {
 
 
         <section className="container mx-auto lg:flex flex-wrap px-6 pb-10">
+            <ToastContainer />
             <div className="w-full lg:w-3/5 lg:pr-3">
                 <h2 className="text-sm text-blue-500  mb-2">FAQ's</h2>
                 <h3 className="text-4xl pb-8 font-bold text-slate-700 mb-4">Frequently Ask Questions</h3>
@@ -167,6 +238,7 @@ const FaqsList = () => {
                         sx={{ '& .MuiTextField-root': { m: 1, width: '100%' } }}
                         noValidate
                         autoComplete="off"
+                        onSubmit={handleSubmit}
                     >
                         <div>
                             <TextField
@@ -174,12 +246,22 @@ const FaqsList = () => {
                                 label="Your Name"
                                 type="text"
                                 sx={textFeild}
+                                name="name"
+                                value={formValues.name}
+                                onChange={handleChange}
+                                error={!!formErrors.name}
+                                helperText={formErrors.name}
                             />
                             <TextField
 
                                 label="Your Phone Number"
                                 type="number"
                                 sx={textFeild}
+                                name="phone"
+                                value={formValues.phone}
+                                onChange={handleChange}
+                                error={!!formErrors.phone}
+                                helperText={formErrors.phone}
 
                             />
                             <TextField
@@ -187,6 +269,11 @@ const FaqsList = () => {
                                 label="Your E-mail"
                                 type="email"
                                 sx={textFeild}
+                                name="email"
+                                value={formValues.email}
+                                onChange={handleChange}
+                                error={!!formErrors.email}
+                                helperText={formErrors.email}
 
                             />
                             {/* <TextField
@@ -200,10 +287,13 @@ const FaqsList = () => {
                                 id="outlined-multiline-static"
                                 label="Your Message"
                                 multiline
-                                rows={4} t
+                                rows={4}
                                 fullWidth
                                 variant="outlined"
-                                sx={textFeild} s
+                                sx={textFeild}
+                                value={formValues.message}
+                                onChange={handleChange}
+                                name="message"
                             />
                             <Button
                                 variant="outlined"
@@ -211,7 +301,7 @@ const FaqsList = () => {
                                     width: "100%",
                                     height: "50px",
                                     fontSize: "18px",
-                                    
+
                                     margin: "8px",
                                     borderColor: 'white',
                                     borderRadius: '20px',
@@ -221,6 +311,7 @@ const FaqsList = () => {
                                         borderColor: 'white',
                                     },
                                 }}
+                                type="submit"
                             >Submit</Button>
                         </div>
 

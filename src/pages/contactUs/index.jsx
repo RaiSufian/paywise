@@ -1,11 +1,13 @@
 import Topbar from "../../components/topbar";
 import Header from "../../components/header";
+import { ToastContainer, toast } from 'react-toastify';
 import BreadCrumb from "../../components/breadcrumb";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Footer from "../../components/footer";
 import { useState } from "react";
+import axios from "axios";
 const ContactUs = () => {
     const textFeild = {
         backgroundColor: 'transparent',
@@ -42,9 +44,29 @@ const ContactUs = () => {
         }
 
         setFormErrors(errors);
-
         if (Object.keys(errors).length === 0) {
-            //  console.log('Form Submitted:', formValues);
+            // console.log('Form Submitted:', formValues);
+            axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
+                .then((resp) => {
+                    // console.log("contact us form resp is:", resp);
+                    if (resp.status == 200) {
+                        setFormValues(initialFormValues);
+                        toast.success('Thank you Contact Us', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.log("contact us from error is:", error);
+                })
+
             setFormValues(initialFormValues);
 
         }
@@ -64,12 +86,13 @@ const ContactUs = () => {
             [name]: '',
         }));
 
-      
+
     };
 
     return (
 
         <>
+            <ToastContainer />
             <Topbar />
             <Header />
             <BreadCrumb name="Contact Us" link="contactus" />
@@ -149,7 +172,7 @@ const ContactUs = () => {
                                             Email
                                         </label>
                                         <a href="mailto:admin@paywizelimited.co.uk" className="block text-stone-500">
-                                        admin@paywizelimited.co.uk
+                                            admin@paywizelimited.co.uk
 
                                         </a>
                                     </div>
