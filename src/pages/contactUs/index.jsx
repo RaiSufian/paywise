@@ -185,8 +185,8 @@ const ContactUs = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Phone:
                                         </label>
-                                        <a href="tell:03093994393" className="block text-stone-500">
-                                            0303 865 8237
+                                        <a href="tel:02039977199" className="block text-stone-500">
+                                        020 3997 7199
                                         </a>
                                     </div>
                                 </li>

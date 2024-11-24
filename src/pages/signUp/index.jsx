@@ -107,36 +107,55 @@ const SignUp = () => {
         if (!signUp.confirmation.trim()) errors.confirmation = 'The field is required.';
         setFormErrors(errors);
         if (Object.keys(errors).length === 0) {
-            
-             console.log('Form Submitted:', signUp);
-            axios.post(`index.php?action=signup&mail-address=${signUp.e_mail}&your-title=${signUp.title}&first-name=${signUp.f_name}&middle-name=${signUp.l_name}&sur-name=${signUp.s_name}&date-of-birth=${signUp.dob}&marital-status=${signUp.marital_statu == 'yes' ? true : false}&home-address=${signUp.h_address}&post-code=${signUp.post_code}&mobile-number=${signUp.mobile_num}&nationality=${signUp.nationality}&share-code=${signUp.sort_code}&ni-number=${signUp.NI_number}&bank-name=${signUp.bank_number}&account-number=${signUp.account_number}&sort-code=${signUp.sort_code}&agency-name=${signUp.agency_name}&comment=${signUp.comment}&proof-right-work=${signUp.proof_right_work}&proof-address=${signUp.proof_address}&proof-bank=${signUp.proof_bank}&proof-ni=${signUp.proof_ni}&confirmation=${signUp.confirmation}&job-title=${signUp.job_title}`,
+
+
+            const formData = new FormData();
+            formData.append("mail-address", signUp.e_mail);
+            formData.append("your-title", signUp.title);
+            formData.append("first-name", signUp.f_name);
+            formData.append("sur-name", signUp.s_name);
+            formData.append("date-of-birth", signUp.dob);
+            formData.append("marital-status", signUp.marital_statu);
+            formData.append("home-address", signUp.h_address);
+            formData.append("post-code", signUp.sort_code);
+            formData.append("mobile-number", signUp.mobile_num);
+            formData.append("nationality", signUp.nationality);
+            formData.append("proof-right-work", signUp.proof_right_work); // Attach the file
+            formData.append("proof-address", signUp.proof_address);
+            formData.append("proof-bank", signUp.proof_bank);
+            formData.append("proof-ni", signUp.proof_ni);
+            formData.append("confirmation", signUp.confirmation);
+            console.log("formdata is:", formData);
+            for (const pair of formData.entries()) {
+                console.log(`${pair[0]}:`, pair[1]);
+            }
+            axios.post(`index.php?action=signup`,
+                formData,
                 {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
                 }
-            )
-                .then((resp) => {
-                    console.log("Sign Up form resp is:", resp);
-                    if (resp.status == 200) {
-                        // setSignUp(initialFormValues);
-                        toast.success('Thank you for you message. It has been send', {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                        });
-                    }
-                })
-                .catch((error) => {
-                    console.log("Sign Up from error is:", error);
-                })
+            ).then((resp) => {
+                console.log("Sign Up form resp is:", resp);
+                if (resp.status == 200) {
+                    // setSignUp(initialFormValues);
+                    toast.success('Thank you for you message. It has been send', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                }
+            }).catch((error) => {
+                console.log("Sign Up from error is:", error);
+            })
+            
         }
-
     }
     // update value of formvalues
     const handleChange = (e) => {
@@ -262,8 +281,8 @@ const SignUp = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Email
                                         </label>
-                                        <a href="mailto:03093994393" className="block text-stone-500">
-                                            info@examplexyz.com
+                                        <a href="mailto:admin@paywizelimited.co.uk" className="block text-stone-500">
+                                            admin@paywizelimited.co.uk
 
                                         </a>
                                     </div>
@@ -276,8 +295,8 @@ const SignUp = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Phone:
                                         </label>
-                                        <a href="mailto:03093994393" className="block text-stone-500">
-                                            0303 865 8237
+                                        <a href="tel:02039977199" className="block text-stone-500">
+                                            02039977199
                                         </a>
                                     </div>
                                 </li>

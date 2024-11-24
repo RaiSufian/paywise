@@ -12,10 +12,10 @@ const Topbar = () => {
                             admin@paywizelimited.co.uk
                             </span>
                         </a>
-                        <a href='tel:030948395485' className="group flex items-center gap-1 px-1 md:px-3 text-white">
+                        <a href='tel:02039977199' className="group flex items-center gap-1 px-1 md:px-3 text-white">
                             <svg className=" transition-transform duration-500 group-hover:animate-rotate360" xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path fill="currentColor" d="m21 15.46l-5.27-.61l-2.52 2.52a15.05 15.05 0 0 1-6.59-6.59l2.53-2.53L8.54 3H3.03C2.45 13.18 10.82 21.55 21 20.97z" /></svg>
                             <span className="group-hover:text-blue-500 group-hover:scale-95 transition-all">
-                                +924116604
+                            020 3997 7199
                             </span>
                         </a>
                     </div>
