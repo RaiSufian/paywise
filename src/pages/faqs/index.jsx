@@ -1,3 +1,4 @@
+
 import Topbar from "../../components/topbar";
 import Header from "../../components/header";
 import Footer from "../../components/footer";
@@ -9,6 +10,7 @@ import FaqsList from "./faqs";
 
 
 const Faqs = () => {
+   
    
     return (
         <>
@@ -24,10 +26,10 @@ const Faqs = () => {
                     <div className="px-5 md:px-14 flex items-center justify-center w-full h-full text-white">
                         <div className="text-center">
                             <h1 className="text-4xl font-bold  mb-6">Paywize</h1>
-                            <h2 className="pb-8">At Smart Cash Umbrella, we aim to simplify and streamline the contracting process for our clients.</h2>
+                            <h2 className="pb-8">At paywize Umbrella, we aim to simplify and streamline the contracting process for our clients.</h2>
                             <div className="relative">
-                                <Link className="py-3 pl-8 pr-10 bg-blue-500 rounded-tl-lg rounded-bl-lg hover:bg-blue-600">Contact Us</Link>
-                                <Link className="py-3 pr-8 pl-10 bg-blue-500 rounded-tr-lg rounded-br-lg hover:bg-blue-600">Sign Up</Link>
+                                <Link to="/contactus" className="py-3 pl-8 pr-10 bg-blue-500 rounded-tl-lg rounded-bl-lg hover:bg-blue-600">Contact Us</Link>
+                                <Link to="/signup" className="py-3 pr-8 pl-10 bg-blue-500 rounded-tr-lg rounded-br-lg hover:bg-blue-600">Sign Up</Link>
                                 <span className="text-black ml-3 top-1/2 left-1/2 absolute w-9 h-8 bg-white rounded-full border-opacity-50 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-sm border-4 border-gray-100">
                                     OR
                                 </span>
@@ -133,10 +135,10 @@ const Faqs = () => {
             <section className="container mx-auto px-3 md:px-6 pb-10">
                 <div className="flex flex-wrap items-center">
                     <div className=" w-full lg:w-1/2 md:pr-12 lg:pr-20 ">
-                        <h4 className="text-3xl md:text-5xl font-bold">Are you questioning whether Smart Cash Umbrella is the right fit for you?</h4>
+                        <h4 className="text-3xl md:text-5xl font-bold">Are you questioning whether paywize Umbrella is the right fit for you?</h4>
                         <p className="py-2 leading-loose text-stone-500">
                             It’s common for agencies to have a Preferred Supplier List (PSL) that lists their preferred umbrella companies. However, you should have the freedom to choose any umbrella company that suits your needs. While some agency contracts may state that you must use an umbrella company from their PSL, many agencies allow contractors to choose their own. If you’re unsure, it’s always worth asking.
-                            At Smart Cash Umbrella, we make joining us a breeze. Once you decide to work with us, we’ll reach out to your agency to introduce ourselves (if we haven’t already). From there, we’ll guide you through the process and provide you with all the support and assistance you need.
+                            At paywize Umbrella, we make joining us a breeze. Once you decide to work with us, we’ll reach out to your agency to introduce ourselves (if we haven’t already). From there, we’ll guide you through the process and provide you with all the support and assistance you need.
                         </p>
                     </div>
                     <div className="w-full lg:w-1/2 ">
@@ -180,7 +182,7 @@ const Faqs = () => {
                     </h2>
                     <p className="py-2 leading-loose text-stone-500">
                         It's important to do your research and select a reliable and trustworthy organization that operates in full compliance with government regulations.
-                        Beware of companies that offer unrealistic take-home pay rates, as they may be using non-compliant schemes. At Smart Cash Umbrella, we are committed to 100% compliance and undergo regular external audits to ensure that we operate within all government legislation. Your peace of mind is our top priority, and we pride ourselves on providing transparent and reliable services to all our contractors and agencies.
+                        Beware of companies that offer unrealistic take-home pay rates, as they may be using non-compliant schemes. At paywize Umbrella, we are committed to 100% compliance and undergo regular external audits to ensure that we operate within all government legislation. Your peace of mind is our top priority, and we pride ourselves on providing transparent and reliable services to all our contractors and agencies.
                     </p>
                     <Link to="/our-services">
                         <Button

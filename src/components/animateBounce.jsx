@@ -1,13 +1,12 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
 
-const AnimateBounce = () => {
+const AnimateBounce = ({text}) => {
 
     const [splitText, setSplitText] = useState("");
     let animate = useRef();
     useLayoutEffect(() => {
      
-        const text = "Paywise Umbrella";
         const chars = text.split('');
 
         // Set the split text in the state

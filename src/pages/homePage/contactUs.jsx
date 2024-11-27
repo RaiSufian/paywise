@@ -1,10 +1,13 @@
 import { ToastContainer, toast } from 'react-toastify';
+import CircularProgress from "@mui/material/CircularProgress";
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import Box from '@mui/material/Box';
 import { useState } from 'react';
 import axios from "axios";
 const ContactUs = () => {
+
+    const [loading, setLoading] = useState(false);
     const initialFormValues = {
         name: '',
         phone: '',
@@ -60,14 +63,14 @@ const ContactUs = () => {
         setFormErrors(errors);
 
         if (Object.keys(errors).length === 0) {
+            setLoading(true);
             // console.log('Form Submitted:', formValues);
-
             axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
                 .then((resp) => {
                     // console.log("contact us form resp is:", resp);
                     if (resp.status == 200) {
                         setFormValues(initialFormValues);
-                        toast.success('Thank you Contact Us', {
+                        toast.success('Thank you for contact us', {
                             position: "top-right",
                             autoClose: 5000,
                             hideProgressBar: false,
@@ -78,10 +81,24 @@ const ContactUs = () => {
                             theme: "light",
                         });
                     }
+                    setLoading(false)
                 })
                 .catch((error) => {
+                    setLoading(false)
                     console.log("contact us from error is:", error);
                 })
+        }
+        else {
+            toast.warning('Please fill in all the required fields', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     };
 
@@ -106,7 +123,7 @@ const ContactUs = () => {
 
     return (
         <section className="" >
-            <ToastContainer/>
+            <ToastContainer />
             <div className="container mx-auto pb-6 px-3 md:px-6">
                 <div className="lg:flex items-center">
                     <div className="lg:w-1/2 md:px-20 ">
@@ -206,7 +223,7 @@ const ContactUs = () => {
                                                 },
                                             }}
                                             type="submit"
-                                        >Submit</Button>
+                                        >{loading ? <CircularProgress size={24} color="inherit" /> : "Submit"}</Button>
                                     </div>
 
                                 </Box>

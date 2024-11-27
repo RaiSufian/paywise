@@ -15,13 +15,14 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import { FormControl, FormHelperText } from "@mui/material";
 import { ToastContainer, toast } from 'react-toastify';
-
+import CircularProgress from "@mui/material/CircularProgress";
 import dayjs from 'dayjs';
 import axios from "axios";
-
 import { useState } from "react";
 
 const SignUp = () => {
+
+    // button style for customize
     const textField = {
         backgroundColor: 'transparent',
         borderRadius: "50px",
@@ -32,6 +33,7 @@ const SignUp = () => {
             marginBottom: '0px',
         },
     }
+    const [loading, setLoading] = useState(false);
     const initialFormValues = {
         title: '',
         f_name: '',
@@ -107,12 +109,13 @@ const SignUp = () => {
         if (!signUp.confirmation.trim()) errors.confirmation = 'The field is required.';
         setFormErrors(errors);
         if (Object.keys(errors).length === 0) {
-
+            setLoading(true)
 
             const formData = new FormData();
-            formData.append("mail-address", signUp.e_mail);
             formData.append("your-title", signUp.title);
+            formData.append("mail-address", signUp.e_mail);
             formData.append("first-name", signUp.f_name);
+            formData.append("middle-name", signUp.l_name);
             formData.append("sur-name", signUp.s_name);
             formData.append("date-of-birth", signUp.dob);
             formData.append("marital-status", signUp.marital_statu);
@@ -120,15 +123,23 @@ const SignUp = () => {
             formData.append("post-code", signUp.sort_code);
             formData.append("mobile-number", signUp.mobile_num);
             formData.append("nationality", signUp.nationality);
-            formData.append("proof-right-work", signUp.proof_right_work); // Attach the file
+            formData.append("share-code", signUp.share_code);
+            formData.append("ni-number", signUp.NI_number);
+            formData.append("bank-name", signUp.bank_number);
+            formData.append("account-number", signUp.account_number);
+            formData.append("sort-code", signUp.sort_code);
+            formData.append("job-title", signUp.job_title);
+            formData.append("agency-name", signUp.agency_name);
+            formData.append("comment", signUp.comment);
+            formData.append("proof-right-work", signUp.proof_right_work);
             formData.append("proof-address", signUp.proof_address);
             formData.append("proof-bank", signUp.proof_bank);
             formData.append("proof-ni", signUp.proof_ni);
             formData.append("confirmation", signUp.confirmation);
-            console.log("formdata is:", formData);
-            for (const pair of formData.entries()) {
-                console.log(`${pair[0]}:`, pair[1]);
-            }
+            // console.log("formdata is:", formData);
+            // for (const pair of formData.entries()) {
+            //     console.log(`${pair[0]}:`, pair[1]);
+            // }
             axios.post(`index.php?action=signup`,
                 formData,
                 {
@@ -137,9 +148,9 @@ const SignUp = () => {
                     },
                 }
             ).then((resp) => {
-                console.log("Sign Up form resp is:", resp);
+                // console.log("Sign Up form resp is:", resp);
                 if (resp.status == 200) {
-                    // setSignUp(initialFormValues);
+                    setSignUp(initialFormValues);
                     toast.success('Thank you for you message. It has been send', {
                         position: "top-right",
                         autoClose: 5000,
@@ -151,10 +162,24 @@ const SignUp = () => {
                         theme: "light",
                     });
                 }
+                setLoading(false)
             }).catch((error) => {
+                setLoading(false)
                 console.log("Sign Up from error is:", error);
             })
-            
+
+        }
+        else {
+            toast.warning('Please fill in all the required fields', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     }
     // update value of formvalues
@@ -247,7 +272,7 @@ const SignUp = () => {
                 </svg>
                 <div className="container mx-auto  pt-8 pb-14 md:py-24 lg:py-44 px-1 lg:px-8">
                     <div className="lg:flex gap-14">
-                        <div className="lg:w-1/2 pr-10 pt-10 sticky top-0">
+                        <div className="lg:w-1/2 pr-10 pt-10 ">
                             <h2 className="font-bold text-2xl md:text-3xl lg:text-5xl text-stone-900">Get In Touch</h2>
                             <p className="pt-4 text-stone-900">
                                 Our team of committed professionals is here to help with any
@@ -482,7 +507,7 @@ const SignUp = () => {
                                                 helperText={formErrors.NI_number}
                                             />
                                             <TextField
-                                                label="Bank Number*"
+                                                label="Bank Name*"
                                                 type="text"
                                                 sx={textField}
                                                 name='bank_number'
@@ -650,7 +675,7 @@ const SignUp = () => {
                                                 Please discuss this with our consultants for more information.
                                             </p>
                                             <p className="text-neutral-700 mt-5 pl-2">
-                                                I authorize Smart Cash Umbrella to process my payroll and pay any
+                                                I authorize paywize Umbrella to process my payroll and pay any
                                                 money due to me into the above bank/building society account.
                                             </p>
                                             <div className="mt-5 mb-5 px-4 py-2 bg-white  md:w-1/2 rounded-2xl ">
@@ -693,7 +718,7 @@ const SignUp = () => {
                                                     },
                                                 }}
                                                 type="submit"
-                                            >Sign Up</Button>
+                                            >{loading ? <CircularProgress size={24} color="inherit" /> : "Sign Up"}</Button>
                                         </div>
 
                                     </Box>

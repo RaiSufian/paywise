@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
@@ -7,6 +8,7 @@ import axios from "axios";
 
 const FaqsList = () => {
 
+    const [loading, setLoading] = useState(false);
     const initialFormValues = {
         name: '',
         phone: '',
@@ -35,7 +37,7 @@ const FaqsList = () => {
 
         if (Object.keys(errors).length === 0) {
             // console.log('Form Submitted:', formValues);
-
+            setLoading(true);
             axios.post(`index.php?action=contact_us&cu_name=${formValues.name}&cu_phone=${formValues.phone}&cu_email=${formValues.email}&cu_message=${formValues.message}`)
                 .then((resp) => {
                     // console.log("contact us form resp is:", resp);
@@ -52,10 +54,23 @@ const FaqsList = () => {
                             theme: "light",
                         });
                     }
+                    setLoading(false);
                 })
                 .catch((error) => {
+                    setLoading(false);
                     console.log("contact us from error is:", error);
                 })
+        } else {
+            toast.warning('Please fill in all the required fields', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
         }
     };
     // update value of formvalues
@@ -160,14 +175,14 @@ const FaqsList = () => {
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
                                     :
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }                            <h4 className="text-lg text-blue-500 font-bold">How do I join Smart Cash Umbrella?</h4>
+                            }                            <h4 className="text-lg text-blue-500 font-bold">How do I join paywize Umbrella?</h4>
                         </div>
                         <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 3 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
                             style={{
                                 transitionProperty: 'max-height, opacity',
                             }}>
                             <p className="text-stone-500">
-                                Joining Smart Cash Umbrella is easy – simply fill out our registration form on the website, or give us a call on 0203 865 8237. We’ll then guide you through the process of setting up your employment with us, and we’ll take care of everything else from there.                            </p>
+                                Joining paywize Umbrella is easy – simply fill out our registration form on the website, or give us a call on 0203 865 8237. We’ll then guide you through the process of setting up your employment with us, and we’ll take care of everything else from there.                            </p>
                         </div>
                     </div>
                     <div className="accordion-item">
@@ -179,7 +194,7 @@ const FaqsList = () => {
                                     :
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
                             }
-                            <h4 className="text-lg text-blue-500 font-bold">How much will I get paid through Smart Cash Umbrella?</h4>
+                            <h4 className="text-lg text-blue-500 font-bold">How much will I get paid through paywize Umbrella?</h4>
                         </div>
                         <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 4 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
                             style={{
@@ -198,7 +213,7 @@ const FaqsList = () => {
                                     :
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
                             }
-                            <h4 className="text-lg text-blue-500 font-bold">Do I have to use Smart Cash Umbrella's recommended pension scheme?</h4>
+                            <h4 className="text-lg text-blue-500 font-bold">Do I have to use paywize Umbrella's recommended pension scheme?</h4>
                         </div>
                         <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 5 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
                             style={{
@@ -224,7 +239,7 @@ const FaqsList = () => {
                                 transitionProperty: 'max-height, opacity',
                             }}>
                             <p className="text-stone-500">
-                                If you’re unable to work due to illness or injury, you may be entitled to sick pay through Smart Cash Umbrella. We offer up to 28 weeks of sick pay, so you can rest assured that you’ll be taken care of if you need time off work.
+                                If you’re unable to work due to illness or injury, you may be entitled to sick pay through paywize Umbrella. We offer up to 28 weeks of sick pay, so you can rest assured that you’ll be taken care of if you need time off work.
                             </p>
                         </div>
                     </div>
@@ -312,7 +327,7 @@ const FaqsList = () => {
                                     },
                                 }}
                                 type="submit"
-                            >Submit</Button>
+                            >{loading ? <CircularProgress size={24} color="inherit" /> : "Submit"}</Button>
                         </div>
 
                     </Box>

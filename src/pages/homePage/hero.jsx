@@ -9,8 +9,13 @@ import AnimateBounce from "../../components/animateBounce";
 import AnimateUp from '../../components/animateUp';
 import AnimateRight from '../../components/animateRight';
 import AnimateDown from '../../components/animatedown';
+import { Link } from 'react-router-dom';
+import axios from "axios";
+
 const Hero = () => {
     const [activeSlide, setActiveSlide] = useState(0);
+    const [bannerData, setBannerData] = useState(null);
+
     useEffect(() => {
         const splide = new Splide('.splide', {
             type: 'loop',
@@ -32,28 +37,49 @@ const Hero = () => {
 
     }, []);
 
+    const getData = async () => {
+
+        await axios.get('index.php?action=get_banner')
+            .then((resp) => {
+                if (resp.status == 200) {
+
+                    console.log("data result is", resp.data.data);
+                    setBannerData(resp.data.data)
+
+                }
+            })
+            .catch((error) => {
+                console.log("data error", error);
+            })
+    }
+    useEffect(() => {
+        getData();
+    }, [])
+
 
     return (
-
         <div className="splide relative">
             <div className="splide__track">
                 <ul className="splide__list">
                     <li className="splide__slide">
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
-                                <img src={img1} alt='slider image' className="slideImg" />
+                                <img src={bannerData && bannerData[0].ban_file} alt='slider image' className="slideImg" />
                                 {activeSlide === 0 &&
                                     <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                         <div className="pl-10  w-full h-full lg:h-screen flex items-center">
                                             <div>
                                                 <h3 className=" tracking-wider  uppercase font-sans text-sm md:text-xl font-bold">
-                                                    <AnimateBounce />
+                                                    {bannerData ? <AnimateBounce text={bannerData[0]?.ban_name} /> : <></>}
                                                 </h3>
                                                 <h2 className="leading-none lg:leading-normaluppercase text-xl md:text-5xl lg:text-7xl font-bold hero-text" id="hero-text">
-                                                    <AnimateUp />
+                                                    {bannerData ? <AnimateUp text={bannerData[0]?.ban_details} /> : <></>}
+
                                                 </h2>
                                                 <div className="pt-3 md:pt-4 lg:pt-8 flex gap-5">
-                                                    <div data-aos="fade-right"
+                                                    <Link
+                                                        to="/about-us"
+                                                        data-aos="fade-right"
                                                         data-aos-easing="ease-in-back"
                                                         data-aos-delay="2000"
                                                         data-aos-duration="1000">
@@ -74,9 +100,10 @@ const Hero = () => {
                                                                     padding: '6px 18px 4px 18px',
                                                                 }
                                                             }} >About Paywise</Button>
-                                                    </div>
+                                                    </Link>
 
-                                                    <div
+                                                    <Link
+                                                        to="/contactus"
                                                         data-aos="fade-left"
                                                         data-aos-easing="ease-in-back"
                                                         data-aos-delay="3000"
@@ -98,7 +125,7 @@ const Hero = () => {
                                                                 padding: '6px 18px 4px 18px',
                                                             }
                                                         }} >Contact Us</Button>
-                                                    </div>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
@@ -110,15 +137,17 @@ const Hero = () => {
                     <li className="splide__slide">
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
-                                <img src={img2} alt='slider image' className="slideImg"  />
+                                <img src={bannerData && bannerData[1].ban_file} alt='slider image' className="slideImg" />
                                 <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                     <div className="pl-3 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                         {activeSlide === 1 &&
                                             <div className="text-center w-full">
                                                 <h2 className="uppercase text-xl md:text-4xl lg:text-6xl font-bold">
-                                                    <AnimateRight />
+                                                    {bannerData ? <AnimateRight text={bannerData[1].ban_name} /> : <></>}
                                                 </h2>
-                                                <div className="pt-3 md:pt-5 lg:pt-8"
+                                                <Link
+                                                    to="/signup"
+                                                    className="pt-3 md:pt-5 lg:pt-8"
                                                     data-aos="fade-bottom"
                                                     data-aos-easing="ease-in-back"
                                                     data-aos-delay="2000"
@@ -140,7 +169,7 @@ const Hero = () => {
                                                             }
                                                         }}
                                                     >Sign Up</Button>
-                                                </div>
+                                                </Link>
                                             </div>
                                         }
                                     </div>
@@ -151,14 +180,16 @@ const Hero = () => {
                     <li className="splide__slide">
                         <div className='max-h-screen'>
                             <div className="image-wrapper relative">
-                                <img src={img3} alt='slider image' className="slideImg"  />
+                                <img src={bannerData && bannerData[2]?.ban_file} alt='slider image' className="slideImg" />
                                 {activeSlide === 2 &&
                                     <div className='text-white text-wrapper absolute   top-0 left-0 bottom-0 right-0'>
                                         <div className="px-2 lg:px-5 container mx-auto  w-full h-full lg:h-screen flex items-center">
                                             <div className="text-center w-full">
-                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold">{activeSlide === 2 && <AnimateBounce />}</h2>
-                                                <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  <AnimateDown /></h1>
-                                                <div className="pt-4 md:pt-4 lg:pt-8"
+                                                <h2 className="tracking-wider swap-y underline uppercase font-sans text-sm md:text-md lg:text-xl font-bold"><AnimateBounce text={bannerData[2]?.ban_name} /></h2>
+                                                <h1 className="uppercase text-md md:text-4xl lg:text-6xl font-bold py-1 md:py-4 lg:py-5">  <AnimateDown text={bannerData[2]?.ban_details} /></h1>
+                                                <Link
+                                                    to="/our-services"
+                                                    className="pt-4 md:pt-4 lg:pt-8"
                                                     data-aos="fade-right"
                                                     data-aos-easing="ease-in-back"
                                                     data-aos-delay="2000"
@@ -180,7 +211,7 @@ const Hero = () => {
                                                             }
                                                         }}
                                                     >Over Services</Button>
-                                                </div>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -216,5 +247,6 @@ const Hero = () => {
         </div>
     )
 }
+
 
 export default Hero;

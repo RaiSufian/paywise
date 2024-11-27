@@ -1,11 +1,10 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
 
-const AnimateUp = () => {
+const AnimateUp = ({text}) => {
     const [splitText, setSplitText] = useState("");
     let animateup = useRef();
     useLayoutEffect(() => {
-        const text = "Experience Effortless Contracting";
         
         const chars = text.split('');
 

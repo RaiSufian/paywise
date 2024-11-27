@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from "gsap";
-const AnimateRight = () =>  {
+const AnimateRight = ({text}) =>  {
     const [splitText, setSplitText] = useState("");
     let animateup = useRef();
     useLayoutEffect(() => {

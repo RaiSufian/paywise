@@ -41,9 +41,9 @@ const AboutUs = () => {
 
                         <h2 className="py-2 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">Paywise Umbrella</h2>
                         <p className="text-xl leading-loose md:pt-2">
-                            At Smart Cash Umbrella, we understand that managing invoicing, payroll, administration, and tax payments can be a daunting task for contractors. That's why we have developed the most comprehensive umbrella service in the industry, with the help of our team of specialists, to make your life easier and stress-free.
+                            At paywize Umbrella, we understand that managing invoicing, payroll, administration, and tax payments can be a daunting task for contractors. That's why we have developed the most comprehensive umbrella service in the industry, with the help of our team of specialists, to make your life easier and stress-free.
                             <br />
-                            Whether you are a first-time contractor, a short-term contractor, or simply prefer not to run your own limited company, you can trust us to take care of all your contracting needs. Contact us now and discover why choosing Smart Cash Umbrella will be the best business decision you make this year.
+                            Whether you are a first-time contractor, a short-term contractor, or simply prefer not to run your own limited company, you can trust us to take care of all your contracting needs. Contact us now and discover why choosing paywize Umbrella will be the best business decision you make this year.
                         </p>
                     </div>
                     <div className="lg:w-1/2 md:p-4 lg:p-8">

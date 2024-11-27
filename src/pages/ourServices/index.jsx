@@ -38,7 +38,7 @@ const OurServices = () => {
                 Paywise Services
               </h1>
               <h2 className="py-3 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">We Assist You in Reaching Your Financial Aspirations.</h2>
-              <p className="text-neutral-500 ">At Smart Cash Umbrella, we provide a wide array of services aimed at ensuring a seamless and hassle-free contracting experience. Here are some of the key benefits you’ll enjoy when partnering with us:</p>
+              <p className="text-neutral-500 ">At paywize Umbrella, we provide a wide array of services aimed at ensuring a seamless and hassle-free contracting experience. Here are some of the key benefits you’ll enjoy when partnering with us:</p>
               <Link to="/signup" className="mt-5 flex justify-start uppercase" >
                 <Button variant="contained" sx={{
                   fontSize: '16px',
