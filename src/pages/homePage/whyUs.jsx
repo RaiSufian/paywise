@@ -1,6 +1,39 @@
-import img from "../../assets/whyus.jpg";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import Lottie from 'react-lottie';
+import aboutUs from "../../assets/lottie/slider.json";
 
 const WhyUs = () => {
+    const [loading, setLoading] = useState(true);
+    const slider = {
+        loop: true,
+        autoplay: true,
+        animationData: aboutUs,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+    const [data, setData] = useState(null);
+    const getData = async () => {
+
+        await axios.get("index.php?action=get_page_widgets&wid_params=why_choose_us")
+            .then((resp) => {
+                // console.log("this is why us response", resp);
+                if (resp.status) {
+                    setData(resp.data.data[0]);
+                    setLoading(false);
+                }
+            })
+            .catch((error) => {
+                console.log("this is why us ", error);
+            })
+    };
+
+    useEffect(() => {
+        getData();
+    }, [])
+
+    
     return (
         <section className="bg-blue-50 relative py-7 md:py-10 lg:py-20 overflow-hidden">
             <svg
@@ -48,7 +81,7 @@ const WhyUs = () => {
                     <div className="md:w-3/5 mx-auto">
                         <h3 className="text-blue-600 justify-center flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none"><g fill="currentColor" clip-path="url(#grommetIconsGooglePay0)"><path d="m12.645 14.34l5.937-10.285l3.234 1.867a4.366 4.366 0 0 1 1.598 5.964l-3.344 5.791a2.73 2.73 0 0 1-3.728 1l-3.002-1.732a1.91 1.91 0 0 1-.695-2.606Z" /><path d="M12.012 7.2L4.625 19.991l3.235 1.867a4.367 4.367 0 0 0 5.964-1.598l4.791-8.298a2.73 2.73 0 0 0-1-3.729l-3.002-1.732a1.903 1.903 0 0 0-2.601.697Z" /><path d="m18.582 4.053l-2.29-1.32A5.456 5.456 0 0 0 8.839 4.73l-4.246 7.352a2.73 2.73 0 0 0 1 3.728l2.289 1.32a2.73 2.73 0 0 0 3.728-1l5.069-8.779a3.81 3.81 0 0 1 5.206-1.394z" /><path d="M9.496 6.885L6.971 5.43a2.357 2.357 0 0 0-3.215.86L.725 11.524a5.383 5.383 0 0 0 1.977 7.363l1.923 1.108l2.332 1.343l1.012.582a4.14 4.14 0 0 1-1.27-5.51l.786-1.355l2.872-4.964a2.343 2.343 0 0 0-.86-3.207Z" /></g><defs><clipPath id="grommetIconsGooglePay0"><path fill="#fff" d="M0 0h24v24H0z" /></clipPath></defs></g></svg>
-                            why Choose Us
+                            {data?.wid_heading}
                         </h3>
                         <p className="font-serif font-semibold text-center text-xl md:text-3xl pt-3">
                             Why do contractors and recruitment agencies prefer us?
@@ -57,48 +90,40 @@ const WhyUs = () => {
                     <div className="lg:flex md:px-10 lg:px-20 gap-5 items-center">
                         <div className="lg:w-1/2 py-6">
                             <div className="m-5 lg:m-10">
-                                <img
-                                    data-aos="fade-up"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="1000"
-                                    data-aos-delay="500"
-                                    src={img} alt="why us img" className="w-full  object-cover h-44 md:h-64 lg:h-96 rounded-lg" />
+
+                                {
+
+                                    loading ?
+                                        <div className="h-[80vh] overflow-hidden">
+                                            <Lottie options={slider} style={{ width: '100%', height: '100%' }} />
+                                        </div>
+                                        :
+                                        <img
+                                            data-aos="fade-up"
+                                            data-aos-easing="ease-out-cubic"
+                                            data-aos-duration="1000"
+                                            data-aos-delay="500"
+                                            src={data.wid_img} alt="why us img" className="w-full  object-cover h-44 md:h-64 lg:h-96 rounded-lg" />
+                                }
                             </div>
                         </div>
                         <div className="lg:w-1/2 ">
-                            <div className="md:flex md:px-2 lg:px-5 gap-3 py-5 text-center md:text-start" >
-                                <span className="mx-auto h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">1</span>
-                                <div className="flex-1 pt-2 md:pt-0"
-                                    data-aos="fade-left"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="1000"
-                                    data-aos-delay="1000">
-                                    <h4 className="font-semibold text-lg">Expertise and Compliance</h4>
-                                    <p className="text-sm">We specialize in providing fully compliant PAYE payroll and employment services, ensuring contractors and recruitment agencies meet all legal requirements with ease and confidence..</p>
-                                </div>
-                            </div>
-                            <div className="md:flex md:px-2 lg:px-5 gap-3 py-5 text-center md:text-start">
-                                <span className="mx-auto h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">2</span>
-                                <div className="flex-1 pt-2 md:pt-0"
-                                    data-aos="fade-left"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="1000"
-                                    data-aos-delay="1500">
-                                    <h4 className="font-semibold text-lg">Comprehensive Support</h4>
-                                    <p className="text-sm">Our team offers end-to-end services, covering everything from tax compliance and payroll to HR and administration, making the contracting process smooth and hassle-free for both contractors and agencies.</p>
-                                </div>
-                            </div>
-                            <div className="md:flex md:px-2 lg:px-5 gap-3 py-5 text-center md:text-start">
-                                <span className="mx-auto h-8 w-8 bg-blue-200  flex justify-center items-center rounded-full">3</span>
-                                <div className="flex-1 pt-2 md:pt-0"
-                                    data-aos="fade-left"
-                                    data-aos-easing="ease-out-cubic"
-                                    data-aos-duration="1000"
-                                    data-aos-delay="2000">
-                                    <h4 className="font-semibold text-lg">Clear Pricing</h4>
-                                    <p className="text-sm">With our fixed-price structure and dedicated support, we offer transparent, affordable solutions tailored to each client’s unique needs, allowing contractors to focus on their work while we handle the details.</p>
-                                </div>
-                            </div>
+                            {
+                                loading ?
+                                    <div className="h-[80vh] overflow-hidden">
+                                        <Lottie options={slider} style={{ width: '100%', height: '100%' }} />
+                                    </div>
+                                    :
+
+                                    <div
+                                        data-aos="fade-left"
+                                        data-aos-easing="ease-out-cubic"
+                                        data-aos-duration="1000"
+                                        data-aos-delay="1000"
+                                        className="text-start">
+                                        <div dangerouslySetInnerHTML={{ __html: data?.wid_details }}></div>
+                                    </div>
+                            }
                         </div>
                     </div>
                 </div>

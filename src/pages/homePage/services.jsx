@@ -1,69 +1,97 @@
 import { Button } from '@mui/material';
-import img1 from "../../assets/whatdo2.jpg";
-import img2 from "../../assets/services2.jpg";
+import { useState, useEffect } from 'react';
+import axios from "axios";
+import Lottie from 'react-lottie';
+import aboutUs from "../../assets/lottie/slider.json";
+
 const Services = () => {
+
+    const [loading, setLoading] = useState(true);
+    const slider = {
+        loop: true,
+        autoplay: true,
+        animationData: aboutUs,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+    const [data, setData] = useState(null);
+    const getData = async () => {
+        setLoading(true);
+        await axios.get("index.php?action=get_page_widgets&wid_params=our_Services")
+            .then((resp) => {
+                
+                setData(resp.data.data[0]);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.log("our services error", error);
+            });
+    }
+    useEffect(() => {
+        getData();
+    }, [])
     return (
         <section className="verflow-hidden">
             <div className="container mx-auto py-5 md:py-10 px-3 md:px-6">
                 <div className="lg:flex items-center">
                     <div className="lg:w-1/2 service_grade">
-                        <div className="p-1 md:p-10 lg:p-20 ">
-                            <h3 className="text-blue-600 flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none"><g fill="currentColor" clip-path="url(#grommetIconsGooglePay0)"><path d="m12.645 14.34l5.937-10.285l3.234 1.867a4.366 4.366 0 0 1 1.598 5.964l-3.344 5.791a2.73 2.73 0 0 1-3.728 1l-3.002-1.732a1.91 1.91 0 0 1-.695-2.606Z" /><path d="M12.012 7.2L4.625 19.991l3.235 1.867a4.367 4.367 0 0 0 5.964-1.598l4.791-8.298a2.73 2.73 0 0 0-1-3.729l-3.002-1.732a1.903 1.903 0 0 0-2.601.697Z" /><path d="m18.582 4.053l-2.29-1.32A5.456 5.456 0 0 0 8.839 4.73l-4.246 7.352a2.73 2.73 0 0 0 1 3.728l2.289 1.32a2.73 2.73 0 0 0 3.728-1l5.069-8.779a3.81 3.81 0 0 1 5.206-1.394z" /><path d="M9.496 6.885L6.971 5.43a2.357 2.357 0 0 0-3.215.86L.725 11.524a5.383 5.383 0 0 0 1.977 7.363l1.923 1.108l2.332 1.343l1.012.582a4.14 4.14 0 0 1-1.27-5.51l.786-1.355l2.872-4.964a2.343 2.343 0 0 0-.86-3.207Z" /></g><defs><clipPath id="grommetIconsGooglePay0"><path fill="#fff" d="M0 0h24v24H0z" /></clipPath></defs></g></svg>
-                                Our Services
-                            </h3>
-                            <h2 className="py-4 text-justify text-2xl font-bold leading-tight"
-                                data-aos="fade-right"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="1000"
-                                data-aos-delay="500"
-                            >
-                                Our goal is to keep the contracting process clear and hassle-free.
-                                We provide a variety of services to ensure a seamless contracting experience:
-                            </h2>
-                            <ul>
-                                <li className="flex gap-2 items-center pb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 72 72"><path fill="#fcea2b" stroke="#fcea2b" stroke-miterlimit="10" stroke-width="1.8" d="M56.426 39.17c.03-.18.03-.36.03-.55c0 0 .33-21.03.3-21.34a3.534 3.534 0 0 0-3.86-3.17a3.53 3.53 0 0 0-3.17 3.86l.71 13.221c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.712 6.755l2.568 10.135v-.01c-2.6-4.36-10.55-17.72-10.71-17.93a3.536 3.536 0 0 0-4.95-.67a3.524 3.524 0 0 0-.68 4.94l5.332 9.137l7.557 13.035l-6.27-7.432a3.2 3.2 0 0 0-.59-.72c-.55-.51-1.22-.81-1.92-.91c-.59-.19-1.22-.23-1.87-.11l-10.079 1.47q-.48 0-.93.12a3.53 3.53 0 0 0-2.48 4.33c.51 1.89 2.45 3 4.34 2.48l8.88-1.3l5.65 7.106c-1.325 3.837-1.248 6.124-3.298 7.182c-3.912-1.38-7.925-1.946-7.925-1.946V42.06q.06-.465 0-.93a3.526 3.526 0 0 0-3.96-3.03a3.52 3.52 0 0 0-3.04 3.96v8.14l.072.223c.087 1.961.712 3.822 1.512 4.422c1.18 1.397 3.024 3.19 4.927 5.05c4.386 3.332 10.451 6.071 15.508 5.807c11.084 0 20.07-8.986 20.07-20.07c0-2.288-.38-4.42-1.085-6.456" /><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.458 50.2v-8.14a3.52 3.52 0 0 1 3.04-3.96a3.526 3.526 0 0 1 3.96 3.96v5.392m34.003-8.276a19.5 19.5 0 0 1 1.085 6.456c0 11.084-8.986 20.07-20.07 20.07c-5.056.264-11.122-2.475-15.508-5.806c-1.903-1.86-3.746-3.654-4.927-5.05c-.8-.6-1.424-2.462-1.512-4.423" /><path d="M33.681 42.216c-1.325 3.837-1.248 6.124-3.299 7.182c-3.912-1.38-7.924-1.946-7.924-1.946M28.03 35.11l-8.88 1.3a3.52 3.52 0 0 1-4.34-2.48a3.53 3.53 0 0 1 2.48-4.33q.45-.12.93-.12l10.08-1.47c.65-.12 1.28-.08 1.87.11m3.511 14.096L28.03 35.11m2.14-6.99c.7.1 1.37.4 1.92.91c.23.21.43.45.59.72l6.27 7.432m-7.557-13.035L26.06 15.01a3.524 3.524 0 0 1 .68-4.94a3.536 3.536 0 0 1 4.95.67c.16.21 8.11 13.57 10.71 17.93v.01m8.06 2.511c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.713 6.755m9.917-.575a3.53 3.53 0 0 1 3.17-3.86a3.534 3.534 0 0 1 3.86 3.17c.03.31-.3 21.34-.3 21.34c0 .19 0 .37-.03.55M41.825 27.792l3.581 5.655" /></g></svg>
-                                    <span>Personal Contractor Assistant</span>
-                                </li>
-                                <li className="flex gap-2 items-center pb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 72 72"><path fill="#fcea2b" stroke="#fcea2b" stroke-miterlimit="10" stroke-width="1.8" d="M56.426 39.17c.03-.18.03-.36.03-.55c0 0 .33-21.03.3-21.34a3.534 3.534 0 0 0-3.86-3.17a3.53 3.53 0 0 0-3.17 3.86l.71 13.221c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.712 6.755l2.568 10.135v-.01c-2.6-4.36-10.55-17.72-10.71-17.93a3.536 3.536 0 0 0-4.95-.67a3.524 3.524 0 0 0-.68 4.94l5.332 9.137l7.557 13.035l-6.27-7.432a3.2 3.2 0 0 0-.59-.72c-.55-.51-1.22-.81-1.92-.91c-.59-.19-1.22-.23-1.87-.11l-10.079 1.47q-.48 0-.93.12a3.53 3.53 0 0 0-2.48 4.33c.51 1.89 2.45 3 4.34 2.48l8.88-1.3l5.65 7.106c-1.325 3.837-1.248 6.124-3.298 7.182c-3.912-1.38-7.925-1.946-7.925-1.946V42.06q.06-.465 0-.93a3.526 3.526 0 0 0-3.96-3.03a3.52 3.52 0 0 0-3.04 3.96v8.14l.072.223c.087 1.961.712 3.822 1.512 4.422c1.18 1.397 3.024 3.19 4.927 5.05c4.386 3.332 10.451 6.071 15.508 5.807c11.084 0 20.07-8.986 20.07-20.07c0-2.288-.38-4.42-1.085-6.456" /><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.458 50.2v-8.14a3.52 3.52 0 0 1 3.04-3.96a3.526 3.526 0 0 1 3.96 3.96v5.392m34.003-8.276a19.5 19.5 0 0 1 1.085 6.456c0 11.084-8.986 20.07-20.07 20.07c-5.056.264-11.122-2.475-15.508-5.806c-1.903-1.86-3.746-3.654-4.927-5.05c-.8-.6-1.424-2.462-1.512-4.423" /><path d="M33.681 42.216c-1.325 3.837-1.248 6.124-3.299 7.182c-3.912-1.38-7.924-1.946-7.924-1.946M28.03 35.11l-8.88 1.3a3.52 3.52 0 0 1-4.34-2.48a3.53 3.53 0 0 1 2.48-4.33q.45-.12.93-.12l10.08-1.47c.65-.12 1.28-.08 1.87.11m3.511 14.096L28.03 35.11m2.14-6.99c.7.1 1.37.4 1.92.91c.23.21.43.45.59.72l6.27 7.432m-7.557-13.035L26.06 15.01a3.524 3.524 0 0 1 .68-4.94a3.536 3.536 0 0 1 4.95.67c.16.21 8.11 13.57 10.71 17.93v.01m8.06 2.511c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.713 6.755m9.917-.575a3.53 3.53 0 0 1 3.17-3.86a3.534 3.534 0 0 1 3.86 3.17c.03.31-.3 21.34-.3 21.34c0 .19 0 .37-.03.55M41.825 27.792l3.581 5.655" /></g></svg>
-                                    <span>Personal Contractor Assistant</span>
-                                </li>
-                                <li className="flex gap-2 items-center pb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 72 72"><path fill="#fcea2b" stroke="#fcea2b" stroke-miterlimit="10" stroke-width="1.8" d="M56.426 39.17c.03-.18.03-.36.03-.55c0 0 .33-21.03.3-21.34a3.534 3.534 0 0 0-3.86-3.17a3.53 3.53 0 0 0-3.17 3.86l.71 13.221c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.712 6.755l2.568 10.135v-.01c-2.6-4.36-10.55-17.72-10.71-17.93a3.536 3.536 0 0 0-4.95-.67a3.524 3.524 0 0 0-.68 4.94l5.332 9.137l7.557 13.035l-6.27-7.432a3.2 3.2 0 0 0-.59-.72c-.55-.51-1.22-.81-1.92-.91c-.59-.19-1.22-.23-1.87-.11l-10.079 1.47q-.48 0-.93.12a3.53 3.53 0 0 0-2.48 4.33c.51 1.89 2.45 3 4.34 2.48l8.88-1.3l5.65 7.106c-1.325 3.837-1.248 6.124-3.298 7.182c-3.912-1.38-7.925-1.946-7.925-1.946V42.06q.06-.465 0-.93a3.526 3.526 0 0 0-3.96-3.03a3.52 3.52 0 0 0-3.04 3.96v8.14l.072.223c.087 1.961.712 3.822 1.512 4.422c1.18 1.397 3.024 3.19 4.927 5.05c4.386 3.332 10.451 6.071 15.508 5.807c11.084 0 20.07-8.986 20.07-20.07c0-2.288-.38-4.42-1.085-6.456" /><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.458 50.2v-8.14a3.52 3.52 0 0 1 3.04-3.96a3.526 3.526 0 0 1 3.96 3.96v5.392m34.003-8.276a19.5 19.5 0 0 1 1.085 6.456c0 11.084-8.986 20.07-20.07 20.07c-5.056.264-11.122-2.475-15.508-5.806c-1.903-1.86-3.746-3.654-4.927-5.05c-.8-.6-1.424-2.462-1.512-4.423" /><path d="M33.681 42.216c-1.325 3.837-1.248 6.124-3.299 7.182c-3.912-1.38-7.924-1.946-7.924-1.946M28.03 35.11l-8.88 1.3a3.52 3.52 0 0 1-4.34-2.48a3.53 3.53 0 0 1 2.48-4.33q.45-.12.93-.12l10.08-1.47c.65-.12 1.28-.08 1.87.11m3.511 14.096L28.03 35.11m2.14-6.99c.7.1 1.37.4 1.92.91c.23.21.43.45.59.72l6.27 7.432m-7.557-13.035L26.06 15.01a3.524 3.524 0 0 1 .68-4.94a3.536 3.536 0 0 1 4.95.67c.16.21 8.11 13.57 10.71 17.93v.01m8.06 2.511c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.713 6.755m9.917-.575a3.53 3.53 0 0 1 3.17-3.86a3.534 3.534 0 0 1 3.86 3.17c.03.31-.3 21.34-.3 21.34c0 .19 0 .37-.03.55M41.825 27.792l3.581 5.655" /></g></svg>
-                                    <span>Personal Contractor Assistant</span>
-                                </li>
-                                <li className="flex gap-2 items-center pb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 72 72"><path fill="#fcea2b" stroke="#fcea2b" stroke-miterlimit="10" stroke-width="1.8" d="M56.426 39.17c.03-.18.03-.36.03-.55c0 0 .33-21.03.3-21.34a3.534 3.534 0 0 0-3.86-3.17a3.53 3.53 0 0 0-3.17 3.86l.71 13.221c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.712 6.755l2.568 10.135v-.01c-2.6-4.36-10.55-17.72-10.71-17.93a3.536 3.536 0 0 0-4.95-.67a3.524 3.524 0 0 0-.68 4.94l5.332 9.137l7.557 13.035l-6.27-7.432a3.2 3.2 0 0 0-.59-.72c-.55-.51-1.22-.81-1.92-.91c-.59-.19-1.22-.23-1.87-.11l-10.079 1.47q-.48 0-.93.12a3.53 3.53 0 0 0-2.48 4.33c.51 1.89 2.45 3 4.34 2.48l8.88-1.3l5.65 7.106c-1.325 3.837-1.248 6.124-3.298 7.182c-3.912-1.38-7.925-1.946-7.925-1.946V42.06q.06-.465 0-.93a3.526 3.526 0 0 0-3.96-3.03a3.52 3.52 0 0 0-3.04 3.96v8.14l.072.223c.087 1.961.712 3.822 1.512 4.422c1.18 1.397 3.024 3.19 4.927 5.05c4.386 3.332 10.451 6.071 15.508 5.807c11.084 0 20.07-8.986 20.07-20.07c0-2.288-.38-4.42-1.085-6.456" /><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.458 50.2v-8.14a3.52 3.52 0 0 1 3.04-3.96a3.526 3.526 0 0 1 3.96 3.96v5.392m34.003-8.276a19.5 19.5 0 0 1 1.085 6.456c0 11.084-8.986 20.07-20.07 20.07c-5.056.264-11.122-2.475-15.508-5.806c-1.903-1.86-3.746-3.654-4.927-5.05c-.8-.6-1.424-2.462-1.512-4.423" /><path d="M33.681 42.216c-1.325 3.837-1.248 6.124-3.299 7.182c-3.912-1.38-7.924-1.946-7.924-1.946M28.03 35.11l-8.88 1.3a3.52 3.52 0 0 1-4.34-2.48a3.53 3.53 0 0 1 2.48-4.33q.45-.12.93-.12l10.08-1.47c.65-.12 1.28-.08 1.87.11m3.511 14.096L28.03 35.11m2.14-6.99c.7.1 1.37.4 1.92.91c.23.21.43.45.59.72l6.27 7.432m-7.557-13.035L26.06 15.01a3.524 3.524 0 0 1 .68-4.94a3.536 3.536 0 0 1 4.95.67c.16.21 8.11 13.57 10.71 17.93v.01m8.06 2.511c-1.42-5.66-5.64-21.641-5.73-21.871a3.53 3.53 0 0 0-4.54-2.08a3.54 3.54 0 0 0-2.07 4.55l1.713 6.755m9.917-.575a3.53 3.53 0 0 1 3.17-3.86a3.534 3.534 0 0 1 3.86 3.17c.03.31-.3 21.34-.3 21.34c0 .19 0 .37-.03.55M41.825 27.792l3.581 5.655" /></g></svg>
-                                    <span>Personal Contractor Assistant</span>
-                                </li>
-                            </ul>
-                            <div className="mt-5  uppercase">
-                                <Button variant="contained" sx={{
-                                    fontSize: '16px',
-                                    padding: '8px 24px 6px 24px',
-                                    borderRadius: '50px'
-                                }} >Contect Us</Button>
-                            </div>
-                        </div>
+
+                        {
+                            loading ?
+                                <div className="h-[80vh] overflow-hidden">
+                                    <Lottie options={slider} style={{ width: '100%', height: '100%' }} />
+                                </div>
+                                :
+                                <div className="p-1 md:p-10 lg:p-20 ">
+                                    <h3 className="text-blue-600 flex gap-2 items-center uppercase tracking-wider text-lg font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><g fill="none"><g fill="currentColor" clip-path="url(#grommetIconsGooglePay0)"><path d="m12.645 14.34l5.937-10.285l3.234 1.867a4.366 4.366 0 0 1 1.598 5.964l-3.344 5.791a2.73 2.73 0 0 1-3.728 1l-3.002-1.732a1.91 1.91 0 0 1-.695-2.606Z" /><path d="M12.012 7.2L4.625 19.991l3.235 1.867a4.367 4.367 0 0 0 5.964-1.598l4.791-8.298a2.73 2.73 0 0 0-1-3.729l-3.002-1.732a1.903 1.903 0 0 0-2.601.697Z" /><path d="m18.582 4.053l-2.29-1.32A5.456 5.456 0 0 0 8.839 4.73l-4.246 7.352a2.73 2.73 0 0 0 1 3.728l2.289 1.32a2.73 2.73 0 0 0 3.728-1l5.069-8.779a3.81 3.81 0 0 1 5.206-1.394z" /><path d="M9.496 6.885L6.971 5.43a2.357 2.357 0 0 0-3.215.86L.725 11.524a5.383 5.383 0 0 0 1.977 7.363l1.923 1.108l2.332 1.343l1.012.582a4.14 4.14 0 0 1-1.27-5.51l.786-1.355l2.872-4.964a2.343 2.343 0 0 0-.86-3.207Z" /></g><defs><clipPath id="grommetIconsGooglePay0"><path fill="#fff" d="M0 0h24v24H0z" /></clipPath></defs></g></svg>
+                                        {data?.wid_heading}
+                                    </h3>
+                                    <div
+                                        data-aos="fade-right"
+                                        data-aos-easing="ease-out-cubic"
+                                        data-aos-duration="1000"
+                                        data-aos-delay="500"
+                                    >
+                                        <div dangerouslySetInnerHTML={{ __html: data?.wid_details }}></div>
+                                    </div>
+
+                                    <div className="mt-5  uppercase">
+                                        <Button variant="contained" sx={{
+                                            fontSize: '16px',
+                                            padding: '8px 24px 6px 24px',
+                                            borderRadius: '50px'
+                                        }} >Contect Us</Button>
+                                    </div>
+                                </div>
+                        }
                     </div>
                     <div className='lg:w-1/2 '>
-                        <div className="m-4 md:m-10 relative  h-72 md:h-96">
-                            <img
-                                data-aos="fade-top"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="1000"
-                                data-aos-delay="500"
-                                src={img1} alt="services img1 " className="object-cover h-40 md:h-60 w-full md:w-96 rounded-3xl absolute  -left-4 rounded-tl-none" />
-                            <img
-                                data-aos="fade-right"
-                                data-aos-easing="ease-out-cubic"
-                                data-aos-duration="1000"
-                                data-aos-delay="500"
-                                src={img2} alt="services img1 " className="object-cover h-40 md:h-60 w-full md:w-96 rounded-3xl absolute -right-4 bottom-0 rounded-br-none" />
 
-                        </div>
+                        {
+                            loading ?
+                                <div className="h-[80vh] overflow-hidden">
+                                    <Lottie options={slider} style={{ width: '100%', height: '100%' }} />
+                                </div>
+                                :
+                                <div className="m-4 md:m-10 relative  h-72 md:h-96">
+                                    <img
+                                        data-aos="fade-top"
+                                        data-aos-easing="ease-out-cubic"
+                                        data-aos-duration="1000"
+                                        data-aos-delay="500"
+                                        src={data?.wid_img} alt="services img1 " className="object-cover h-40 md:h-60 w-full md:w-96 rounded-3xl absolute  -left-4 rounded-tl-none" />
+                                    <img
+                                        data-aos="fade-right"
+                                        data-aos-easing="ease-out-cubic"
+                                        data-aos-duration="1000"
+                                        data-aos-delay="500"
+                                        src={data?.wid_img_two}
+                                        alt="services img1 " className="object-cover h-40 md:h-60 w-full md:w-96 rounded-3xl absolute -right-4 bottom-0 rounded-br-none" />
+
+                                </div>
+                        }
                     </div>
                 </div>
             </div>
