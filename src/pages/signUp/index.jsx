@@ -1,6 +1,3 @@
-import Topbar from "../../components/topbar";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
@@ -228,8 +225,7 @@ const SignUp = () => {
 
         <>
             <ToastContainer />
-            <Topbar />
-            <Header />
+           
             <BreadCrumb name="Sign Up" link="signup" />
             <section className="relative bg-slate-200 ">
                 <svg
@@ -729,7 +725,7 @@ const SignUp = () => {
                     </div>
                 </div>
             </section>
-            <Footer />
+          
         </>
     )
 }

@@ -1,12 +1,9 @@
 import CircularProgress from "@mui/material/CircularProgress";
-import Topbar from "../../components/topbar";
-import Header from "../../components/header";
 import { ToastContainer, toast } from 'react-toastify';
 import BreadCrumb from "../../components/breadcrumb";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import Footer from "../../components/footer";
 import { useState } from "react";
 import axios from "axios";
 const ContactUs = () => {
@@ -110,8 +107,7 @@ const ContactUs = () => {
 
         <>
             <ToastContainer />
-            <Topbar />
-            <Header />
+           
             <BreadCrumb name="Contact Us" link="contactus" />
             <section className="relative bg-slate-200 ">
                 <svg
@@ -301,7 +297,7 @@ const ContactUs = () => {
                     </div>
                 </div>
             </section>
-            <Footer />
+          
         </>
     )
 }

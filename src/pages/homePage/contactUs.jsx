@@ -138,7 +138,7 @@ const ContactUs = () => {
     const getData = async () => {
         await axios.get("index.php?action=get_page_widgets&wid_params=get_touch")
             .then((resp) => {
-                console.log("contact us home", resp);
+                // console.log("contact us home", resp);
                 if (resp.status == 200) {
                     setData(resp.data.data[0]);
                     setPageLoading(false);
@@ -153,7 +153,6 @@ const ContactUs = () => {
         getData();
     }, [])
 
-    console.log("data is", data);
     return (
         <section className="" >
             <ToastContainer />

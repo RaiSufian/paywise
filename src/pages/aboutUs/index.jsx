@@ -1,7 +1,4 @@
-import Topbar from "../../components/topbar";
-import Header from "../../components/header";
 import BreadCrumb from "../../components/breadcrumb";
-import Footer from "../../components/footer";
 import { Link } from "react-router-dom";
 import Lottie from 'react-lottie';
 import aboutUs from "../../assets/lottie/aboutAnimate.json";
@@ -28,8 +25,6 @@ const AboutUs = () => {
     };
     return (
         <>
-            <Topbar />
-            <Header />
             <BreadCrumb name="About Us" link="about-us" />
             <div className="container mx-auto  px-2 md:px-6">
                 <div className="lg:flex pt-10 md:pt-20 items-center">
@@ -123,8 +118,7 @@ const AboutUs = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <Footer />
+            </div> 
 
         </>
     )

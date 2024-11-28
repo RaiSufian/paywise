@@ -1,7 +1,4 @@
 
-import Topbar from "../../components/topbar";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
 import img2 from "../../assets/whatdo2.jpg";
 import { Link } from "react-router-dom";
 import img1 from "../../assets/faqs.jpg";
@@ -14,8 +11,6 @@ const Faqs = () => {
    
     return (
         <>
-            <Topbar />
-            <Header />
             <section className="flex flex-wrap faq_back lg:mb-20">
                 <div className="hidden lg:block lg:w-1/2 w-full h-56 lg:h-[calc(100%+70px)] relative">
                     <img data-aos="zoom-in" src={img2} className="w-full h-full object-cover hover:rotate-6" />
@@ -205,7 +200,6 @@ const Faqs = () => {
                 </div>
             </section>
             <FaqsList />
-            <Footer />
         </>
     )
 }

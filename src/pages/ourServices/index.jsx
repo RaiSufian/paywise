@@ -1,7 +1,4 @@
-import Topbar from "../../components/topbar";
-import Header from "../../components/header";
 import BreadCrumb from "../../components/breadcrumb";
-import Footer from "../../components/footer";
 import Lottie from 'react-lottie';
 import service from '../../assets/lottie/service.json';
 import { Button } from '@mui/material';
@@ -21,8 +18,7 @@ const OurServices = () => {
   return (
 
     <>
-      <Topbar />
-      <Header />
+      
       <BreadCrumb name="Our Services" link="/our-services" />
       <div className=" bg-blue-50 relative px-2 md:px-6">
         <div className="container mx-auto lg:pb-10">
@@ -71,7 +67,7 @@ const OurServices = () => {
         </svg>
       </div>
       <Blogs />
-      <Footer />
+     
     </>
   )
 }
