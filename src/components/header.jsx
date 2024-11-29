@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({detail}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [isSticky, setIsSticky] = useState(false);
 
@@ -30,7 +30,7 @@ const Header = () => {
             <div className={`bg-white sticky top-0 z-50 transition-all duration-200 ${isSticky ? 'bg-opacity-90 rounded-full scale-90' : ''}`}>
                 <div className={`lg:container  flex mx-auto py-3 justify-between items-center px-3 md:px-2 lg:px-6 ${isSticky ? '' : ''}`}>
                     <Link to="/" className="lg:mr-4">
-                        <img src='/logo.png' alt="logo" className="w-24 lg:w-36" />
+                        <img src={detail?.config_logo} alt="logo" className="w-24 lg:w-36" />
                     </Link>
                     <div className="main_menu md:block hidden">
                         <ul className="flex items-center gap-5 lg:gap-12 font-semibold font-sans">
