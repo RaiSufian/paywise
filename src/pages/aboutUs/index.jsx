@@ -68,7 +68,9 @@ const AboutUs = () => {
                                         About Us
                                     </h1>
 
-                                    <h2 className="py-2 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">{data.wid_heading}</h2>
+                                    <h2 className="py-2 md:py-4 font-bold text-2xl md:text-4xl text-stone-900">
+                                        {data.wid_heading}
+                                        </h2>
                                     <p className="text-xl leading-loose md:pt-2">
                                         <div dangerouslySetInnerHTML={{ __html: data?.wid_details }}></div>
                                     </p>

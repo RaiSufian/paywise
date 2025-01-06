@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Home from './pages/homePage';
 import SignUp from './pages/signUp';
@@ -24,7 +24,7 @@ function App() {
   const getDetails = async () => {
     await axios.get("index.php?action=get_site_config")
       .then((resp) => {
-        // console.log("this is site data", resp.data);
+        //  console.log("this is site data", resp.data);
         setDetail(resp.data.data[0]);
         setLoading(false);
 
@@ -32,6 +32,19 @@ function App() {
       .catch((error) => {
         console.log("get site data error is:", error);
       })
+  }
+
+
+  const [socialLinks, setSocialLinks] = useState([]);
+  const getSocialLink = async () =>{
+    await axios.get('index.php?action=get_social_links')
+    .then((resp)=>{
+        // console.log("get data", resp.data.data);
+        setSocialLinks(resp.data.data);
+    })
+    .catch((error)=>{
+     console.log("this is social Link eror", error);
+    })
   }
 
   // main loader 
@@ -45,6 +58,7 @@ function App() {
   };
 
   useEffect(() => {
+    getSocialLink();
     getDetails();
     AOS.init();
   }, [])
@@ -64,17 +78,17 @@ function App() {
           </div>
           :
           <>
-            <Topbar detail={detail} />
+            <Topbar detail={detail} links={socialLinks} />
             <Header detail={detail} />
             <Routes>
               <Route path='/' element={<Home />} />
-              <Route path="/contactus" element={<ContactUs />} />
+              <Route path="/contactus" element={<ContactUs detail={detail} />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/our-services" element={<OurServices />} />
               <Route path="/faqs" element={<Faqs />} />
             </Routes>
-            <Footer detail={detail} />
+            <Footer detail={detail}  links={socialLinks}/>
           </>
       }
     </>

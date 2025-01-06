@@ -4,9 +4,11 @@ import BreadCrumb from "../../components/breadcrumb";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-const ContactUs = () => {
+
+
+const ContactUs = ({ detail }) => {
 
     const [loading, setLoading] = useState(false);
     const textFeild = {
@@ -72,7 +74,7 @@ const ContactUs = () => {
 
             setFormValues(initialFormValues);
 
-        }else {
+        } else {
             toast.warning('Please fill in all the required fields', {
                 position: "top-right",
                 autoClose: 5000,
@@ -103,11 +105,28 @@ const ContactUs = () => {
 
     };
 
+
+    const [data, setData] = useState(null);
+
+    const getData = async () => {
+        await axios.get("index.php?action=get_page_widgets&wid_params=get_in_touch")
+            .then((resp) => {
+                //   console.log("this is site data", resp.data);
+                setData(resp.data.data[0]);
+            })
+            .catch((error) => {
+                console.log("get site data error is:", error);
+            })
+    }
+    useEffect(() => {
+        getData();
+    }, [])
+
     return (
 
         <>
             <ToastContainer />
-           
+
             <BreadCrumb name="Contact Us" link="contactus" />
             <section className="relative bg-slate-200 ">
                 <svg
@@ -151,12 +170,11 @@ const ContactUs = () => {
                 <div className="container mx-auto  pt-8 pb-14 md:py-24 lg:py-44 px-1 lg:px-8">
                     <div className="lg:flex gap-14">
                         <div className="lg:w-1/2 pr-10 pt-10">
-                            <h2 className="font-bold text-2xl md:text-3xl lg:text-5xl text-stone-900">Get In Touch</h2>
+                            <h2 className="font-bold text-2xl md:text-3xl lg:text-5xl text-stone-900">
+                                {data?.wid_heading}
+                            </h2>
                             <p className="pt-4 text-stone-900">
-                                Our team of committed professionals is here to help with any
-                                questions or concerns you may have. We are proud to deliver
-                                exceptional customer support and look forward to connecting
-                                with you.
+                                <div dangerouslySetInnerHTML={{ __html: data?.wid_details }}></div>
                             </p>
 
                             <ul className="mt-5">
@@ -171,7 +189,7 @@ const ContactUs = () => {
                                         <span className="block text-stone-500">
                                             Monday to Friday
                                             <br />
-                                            09:00 am to 06:00 pm
+                                            {detail.config_time}
 
                                         </span>
                                     </div>
@@ -184,8 +202,8 @@ const ContactUs = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Email
                                         </label>
-                                        <a href="mailto:admin@paywizelimited.co.uk" className="block text-stone-500">
-                                            admin@paywizelimited.co.uk
+                                        <a href={`mailto:${detail.config_email}`} className="block text-stone-500">
+                                            {detail.config_email}
 
                                         </a>
                                     </div>
@@ -198,8 +216,8 @@ const ContactUs = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Phone:
                                         </label>
-                                        <a href="tel:02039977199" className="block text-stone-500">
-                                        020 3997 7199
+                                        <a href={`tel:${detail.config_phone}`} className="block text-stone-500">
+                                            {detail.config_phone}
                                         </a>
                                     </div>
                                 </li>
@@ -297,7 +315,7 @@ const ContactUs = () => {
                     </div>
                 </div>
             </section>
-          
+
         </>
     )
 }

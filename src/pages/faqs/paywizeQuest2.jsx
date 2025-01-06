@@ -1,6 +1,41 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from 'axios'
+import { useState, useEffect } from "react";
+import Lottie from 'react-lottie';
+import slider from "../../assets/lottie/slider.json";
 const PaywizeQuest2 = () => {
+
+    const sliderload = {
+        loop: true,
+        autoplay: true,
+        animationData: slider,
+        rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+        },
+    };
+
+
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const getData = async () => {
+        await axios.get("index.php?action=get_page_widgets&wid_params=are_you_concerned")
+            .then((resp) => {
+                // console.log("this is why us response", resp);
+                if (resp.status) {
+                    setData(resp.data.data[0]);
+                    setLoading(false);
+                }
+            })
+            .catch((error) => {
+                console.log("this is why us ", error);
+            })
+    };
+
+    useEffect(() => {
+        getData();
+    }, [])
     return (
 
         <section className="container mx-auto px-2 md:px-6 lg:flex items-center gap-6 py-4 lg:py-20 ">
@@ -32,31 +67,43 @@ const PaywizeQuest2 = () => {
 
             </div>
             <div className="w-full lg:w-1/2 pr-2 md:pr-12 lg:pr-24 pt-10 lg:pt-0">
-                <h2 className="text-3xl md:text-5xl font-bold">
-                    Are you concerned about the potential risks of using an umbrella company?
-                </h2>
-                <p className="py-2 leading-loose text-stone-500">
-                    It's important to do your research and select a reliable and trustworthy organization that operates in full compliance with government regulations.
-                    Beware of companies that offer unrealistic take-home pay rates, as they may be using non-compliant schemes. At paywize Umbrella, we are committed to 100% compliance and undergo regular external audits to ensure that we operate within all government legislation. Your peace of mind is our top priority, and we pride ourselves on providing transparent and reliable services to all our contractors and agencies.
-                </p>
-                <Link to="/our-services">
-                    <Button
-                        variant="outlined"
-                        sx={{
-                            width: "270px",
-                            height: "50px",
-                            fontSize: "18px",
 
-                            margin: "8px",
-                            color: "#fff",
-                            borderRadius: '20px',
-                            backgroundColor: '#3B82F6',
-                            '&:hover': {
-                                backgroundColor: '#068AD3',
-                            },
-                        }}
-                    >Veiw All Services</Button>
-                </Link>
+                {
+                    loading ?
+                        <div className="h-[80vh] w-full overflow-hidden">
+                            <Lottie options={sliderload} style={{ width: '100%', height: '100%' }} />
+
+                        </div>
+                        :
+
+                        <>
+                            <h2 className="text-3xl md:text-5xl font-bold">
+                                {data?.wid_heading}
+                            </h2>
+                            <p className="py-2 leading-loose text-stone-500">
+                                <div dangerouslySetInnerHTML={{ __html: data?.wid_details }}></div>
+                            </p>
+                            <Link to="/our-services">
+                                <Button
+                                    variant="outlined"
+                                    sx={{
+                                        width: "270px",
+                                        height: "50px",
+                                        fontSize: "18px",
+
+                                        margin: "8px",
+                                        color: "#fff",
+                                        borderRadius: '20px',
+                                        backgroundColor: '#3B82F6',
+                                        '&:hover': {
+                                            backgroundColor: '#068AD3',
+                                        },
+                                    }}
+                                >Veiw All Services</Button>
+                            </Link>
+                        </>
+
+                }
             </div>
         </section>
     )

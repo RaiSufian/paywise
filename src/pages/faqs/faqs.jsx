@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -90,6 +90,27 @@ const FaqsList = () => {
 
     };
 
+
+    const [faqs, setFaqs] = useState([]);
+
+
+    const getFaqs = async () => {
+        try {
+            const response = await axios.get("https://paywizelimited.co.uk/api/index.php?action=get_faqs");
+            console.log("FAQs data:", response.data.data);
+            if (response.status == 200) {
+                setFaqs(response.data.data);
+            }
+            // .data contains the response body
+        } catch (error) {
+            console.error("Error fetching FAQs:", error.message); // Provide error details
+        }
+    };
+
+    useEffect(() => {
+        getFaqs();
+    }, [])
+
     const [accordItem, setAccordItem] = useState(0);
     const textFeild = {
         backgroundColor: 'transparent',
@@ -128,121 +149,35 @@ const FaqsList = () => {
                 <h3 className="text-4xl pb-8 font-bold text-slate-700 mb-4">Frequently Ask Questions</h3>
                 <div className="my-5">
 
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 1 ? () => setAccordItem(0) : () => setAccordItem(1)}>
-                            {
-                                accordItem == 1
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }
-                            <h4 className="text-lg text-blue-500 font-bold">What is an umbrella company?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 1 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                An umbrella company is a business that acts as an intermediary between contractors and their clients or recruitment agencies. The umbrella company handles invoicing, tax and National Insurance contributions, and other administrative tasks on behalf of the contractor.
-                            </p>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 2 ? () => setAccordItem(0) : () => setAccordItem(2)}>
-                            {
-                                accordItem == 2
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }
-                            <h4 className="text-lg text-blue-500 font-bold">How does using an umbrella company benefit me?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 2 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                Using an umbrella company can make your life as a contractor much easier, as they take care of all the admin and paperwork associated with contracting. You’ll also have access to employee benefits, such as sick pay and holiday pay, which you wouldn’t get if you were working as a sole trader.                            </p>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 3 ? () => setAccordItem(0) : () => setAccordItem(3)}>
-                            {
-                                accordItem == 3
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }                            <h4 className="text-lg text-blue-500 font-bold">How do I join paywize Umbrella?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 3 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                Joining paywize Umbrella is easy – simply fill out our registration form on the website, or give us a call on 0203 865 8237. We’ll then guide you through the process of setting up your employment with us, and we’ll take care of everything else from there.                            </p>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 4 ? () => setAccordItem(0) : () => setAccordItem(4)}>
-                            {
-                                accordItem == 4
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }
-                            <h4 className="text-lg text-blue-500 font-bold">How much will I get paid through paywize Umbrella?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 4 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                Your take-home pay will depend on a number of factors, including the rate you charge, the amount of tax you pay, and any other deductions such as National Insurance contributions. We’ll give you an estimate of your take-home pay when you sign up, so you know what to expect.                            </p>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 5 ? () => setAccordItem(0) : () => setAccordItem(5)}>
-                            {
-                                accordItem == 5
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }
-                            <h4 className="text-lg text-blue-500 font-bold">Do I have to use paywize Umbrella's recommended pension scheme?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 5 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                No, you’re free to choose your own pension scheme if you prefer. However, we do recommend our pension scheme as it’s designed specifically for contractors and offers a range of benefits, including lower fees and tax relief.                            </p>
-                        </div>
-                    </div>
-                    <div className="accordion-item">
-                        <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == 6 ? () => setAccordItem(0) : () => setAccordItem(6)}>
-                            {
-                                accordItem == 6
-                                    ?
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
-                                    :
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
-                            }
-                            <h4 className="text-lg text-blue-500 font-bold">What happens if I need to take time off work due to illness or injury?</h4>
-                        </div>
-                        <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == 6 ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
-                            style={{
-                                transitionProperty: 'max-height, opacity',
-                            }}>
-                            <p className="text-stone-500">
-                                If you’re unable to work due to illness or injury, you may be entitled to sick pay through paywize Umbrella. We offer up to 28 weeks of sick pay, so you can rest assured that you’ll be taken care of if you need time off work.
-                            </p>
-                        </div>
-                    </div>
+
+                    {
+                        faqs.map((item) => {
+                            return (
+                                <div className="accordion-item" key={item.faq_id}>
+                                    <div className="px-5 py-6 flex gap-3 cursor-pointer" onClick={accordItem == item.faq_id ? () => setAccordItem(0) : () => setAccordItem(item.faq_id)}>
+                                        {
+                                            accordItem == item.faq_id
+                                                ?
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><mask id="lineMdWatchOff0"><g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="0" fill="#fff" stroke="none"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path><path stroke="#000" stroke-dasharray="28" stroke-dashoffset="28" d="M0 11h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path><path stroke-dasharray="28" stroke-dashoffset="28" d="M0 13h24" transform="rotate(45 12 12)"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.5s" dur="0.4s" values="28;0" /></path></g></mask><rect width="24" height="24" fill="currentColor" mask="url(#lineMdWatchOff0)" /></svg>
+                                                :
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24"><circle cx="12" cy="12" r="0" fill="currentColor"><animate fill="freeze" attributeName="r" dur="0.2s" values="0;3" /></circle><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z"><animate fill="freeze" attributeName="d" dur="0.5s" values="M4 12c1.38 -0.77 4.42 -1.3 8 -1.3c3.58 0 6.62 0.53 8 1.3c-1.38 0.77 -4.42 1.3 -8 1.3c-3.58 0 -6.62 -0.53 -8 -1.3Z;M2 12c1.72 -3.83 5.53 -6.5 10 -6.5c4.47 0 8.28 2.67 10 6.5c-1.72 3.83 -5.53 6.5 -10 6.5c-4.47 0 -8.28 -2.67 -10 -6.5Z" /></path></svg>
+                                        }
+                                        <h4 className="text-lg text-blue-500 font-bold">{item.faq_question}</h4>
+                                    </div>
+                                    <div className={`px-5 overflow-hidden transition-all duration-300 ${accordItem == item.faq_id ? "pb-6 opacity-100" : "max-h-0 opacity-0"}`}
+                                        style={{
+                                            transitionProperty: 'max-height, opacity',
+                                        }}>
+                                        <p className="text-stone-500">
+                                            {item.faq_answer}
+                                        </p>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+
+
                 </div>
             </div >
             <div className="w-full lg:w-2/5 lg:pl-6">
