@@ -119,7 +119,7 @@ const Hero = () => {
                                                                                 fontSize: '10px',
                                                                                 padding: '6px 18px 4px 18px',
                                                                             }
-                                                                        }} >About Paywise</Button>
+                                                                        }} >About Paywize</Button>
                                                                 </Link>
 
                                                                 <Link

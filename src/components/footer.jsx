@@ -58,7 +58,7 @@ const Footer = ({ detail, links }) => {
             </div>
             <hr />
             <div className="container py-4 text-center text-white text-lg px-2">
-                <span>©2024 Paywise Umbrella - All Rights Reserved | Designed By Sufian®</span>
+                <span>©2024 Paywize Umbrella - All Rights Reserved | Designed By Sufian®</span>
             </div>
         </section>
     )

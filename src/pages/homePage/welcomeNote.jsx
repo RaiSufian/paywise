@@ -19,7 +19,7 @@ const WelcomeNote = () => {
     const [data, setData] = useState(null);
     const getData = async () => {
         setLoading(true);
-        await axios.get("index.php?action=get_page_widgets&wid_params=welcome_to_paywise")
+        await axios.get("index.php?action=get_page_widgets&wid_params=welcome_to_paywize")
             .then((resp) => {
                 // console.log("welcome data is", resp);
                 if (resp.status == 200) {
@@ -53,7 +53,7 @@ const WelcomeNote = () => {
                                 <div className="hidden lg:block lg:w-6/12">
 
                                     <div className="m-10 md:m-20 relative">
-                                        <img data-aos="fade-down-right" data-aos-duration="1000" data-aos-easing="linear" data-aos-offset="500" src={data?.wid_img} alt="welcome paywise" className="w-full z-10 shadow-lg m-10" />
+                                        <img data-aos="fade-down-right" data-aos-duration="1000" data-aos-easing="linear" data-aos-offset="500" src={data?.wid_img} alt="welcome paywize" className="w-full z-10 shadow-lg m-10" />
                                         <span className='absolute w-full h-full border-4 border-blue-500 -top-7 -left-2  -z-10'></span>
                                     </div>
 
