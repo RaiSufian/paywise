@@ -13,7 +13,7 @@ const Footer = ({ detail, links }) => {
                                 <Button variant="contained" sx={{
                                     fontSize: '18px',
                                     padding: '10px 24px 8px 24px',
-                                }} >Contect Us</Button>
+                                }} >Contact Us</Button>
                             </Link>
                         </div>
                     </div>
@@ -58,7 +58,7 @@ const Footer = ({ detail, links }) => {
             </div>
             <hr />
             <div className="container py-4 text-center text-white text-lg px-2">
-                <span>©2024 Paywize Umbrella - All Rights Reserved | Designed By Sufian®</span>
+                <span>©2024 Paywize Umbrella - All Rights Reserved | Designed & Developed By <a href="https://abusufianreactjsdeveloper.netlify.app/" targer="_blank">Sufian</a>®</span>
             </div>
         </section>
     )

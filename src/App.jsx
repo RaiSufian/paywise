@@ -1,5 +1,5 @@
-import { useEffect, useState, useSyncExternalStore } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Routes, } from 'react-router-dom';
 import Home from './pages/homePage';
 import SignUp from './pages/signUp';
 import ContactUs from './pages/contactUs';
@@ -16,6 +16,7 @@ import Header from './components/header';
 import Footer from './components/footer';
 import loadJSON from './assets/lottie/mainloader.json';
 import Lottie from 'react-lottie';
+import MySEO from './components/mySEO';
 function App() {
 
   // Get data about paywize website
@@ -24,7 +25,7 @@ function App() {
   const getDetails = async () => {
     await axios.get("index.php?action=get_site_config")
       .then((resp) => {
-        //  console.log("this is site data", resp.data);
+          // console.log("this is site data", resp.data);
         setDetail(resp.data.data[0]);
         setLoading(false);
 
@@ -36,22 +37,22 @@ function App() {
 
 
   const [socialLinks, setSocialLinks] = useState([]);
-  const getSocialLink = async () =>{
+  const getSocialLink = async () => {
     await axios.get('index.php?action=get_social_links')
-    .then((resp)=>{
+      .then((resp) => {
         // console.log("get data", resp.data.data);
         setSocialLinks(resp.data.data);
-    })
-    .catch((error)=>{
-     console.log("this is social Link eror", error);
-    })
+      })
+      .catch((error) => {
+        console.log("this is social Link eror", error);
+      })
   }
 
   // main loader 
   const loader = {
     loop: true,
     autoplay: true,
-    animationData: loadJSON ,
+    animationData: loadJSON,
     rendererSettings: {
       preserveAspectRatio: 'xMidYMid slice',
     },
@@ -78,17 +79,18 @@ function App() {
           </div>
           :
           <>
+            <MySEO detail={detail}/>
             <Topbar detail={detail} links={socialLinks} />
             <Header detail={detail} />
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path="/contactus" element={<ContactUs detail={detail} />} />
-              <Route path="/signup" element={<SignUp />} />
+              <Route path="/signup" element={<SignUp detail={detail} />} />
               <Route path="/about-us" element={<AboutUs />} />
               <Route path="/our-services" element={<OurServices />} />
               <Route path="/faqs" element={<Faqs />} />
             </Routes>
-            <Footer detail={detail}  links={socialLinks}/>
+            <Footer detail={detail} links={socialLinks} />
           </>
       }
     </>

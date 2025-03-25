@@ -19,7 +19,7 @@ const WelcomeNote = () => {
     const [data, setData] = useState(null);
     const getData = async () => {
         setLoading(true);
-        await axios.get("index.php?action=get_page_widgets&wid_params=welcome_to_paywize")
+        await axios.get("index.php?action=get_page_widgets&wid_params=welcome_to_paywise")
             .then((resp) => {
                 // console.log("welcome data is", resp);
                 if (resp.status == 200) {

@@ -230,7 +230,7 @@ const Hero = () => {
                                                                             padding: '6px 18px 4px 18px',
                                                                         }
                                                                     }}
-                                                                >Over Services</Button>
+                                                                >Our Services</Button>
                                                             </Link>
                                                         </div>
                                                     </div>
