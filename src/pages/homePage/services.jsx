@@ -62,7 +62,7 @@ const Services = () => {
                                             fontSize: '16px',
                                             padding: '8px 24px 6px 24px',
                                             borderRadius: '50px'
-                                        }} >Contect Us</Button>
+                                        }} >Contact Us</Button>
                                     </div>
                                 </div>
                         }
