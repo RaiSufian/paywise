@@ -17,7 +17,7 @@ import dayjs from 'dayjs';
 import axios from "axios";
 import { useState } from "react";
 
-const SignUp = () => {
+const SignUp = ({ detail }) => {
 
     // button style for customize
     const textField = {
@@ -158,6 +158,7 @@ const SignUp = () => {
                         progress: undefined,
                         theme: "light",
                     });
+                    
                 }
                 setLoading(false)
             }).catch((error) => {
@@ -289,7 +290,7 @@ const SignUp = () => {
                                         <span className="block text-stone-500">
                                             Monday to Friday
                                             <br />
-                                            09:00 am to 06:00 pm
+                                            {detail.config_time}
 
                                         </span>
                                     </div>
@@ -302,8 +303,8 @@ const SignUp = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Email
                                         </label>
-                                        <a href="mailto:admin@paywizelimited.co.uk" className="block text-stone-500">
-                                            admin@paywizelimited.co.uk
+                                        <a href={`mailto:${detail.config_email}`} className="block text-stone-500">
+                                        {detail.config_email}
 
                                         </a>
                                     </div>
@@ -316,8 +317,8 @@ const SignUp = () => {
                                         <label className="text-lg font-bold text-neutral-900">
                                             Phone:
                                         </label>
-                                        <a href="tel:02039977199" className="block text-stone-500">
-                                            02039977199
+                                        <a href={`tel:${detail.config_phone}`} className="block text-stone-500">
+                                        {detail.config_phone}
                                         </a>
                                     </div>
                                 </li>
