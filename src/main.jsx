@@ -5,11 +5,14 @@ import App from './App.jsx';
 import axios from "axios";
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { HelmetProvider } from 'react-helmet-async';
 
 
 axios.defaults.baseURL = "https://paywizelimited.co.uk/api/";
 createRoot(document.getElementById('root')).render(
-  <Router>
-    <App />
-  </Router>,
+  <HelmetProvider>
+    <Router>
+      <App />
+    </Router>
+  </HelmetProvider>
 )
